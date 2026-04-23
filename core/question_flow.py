@@ -84,11 +84,12 @@ def should_ask_q3(q1_answer: str, q2_answer: str) -> bool:
     if not q2_answer:
         return True
 
-    if isinstance(q2_answer, str) and len(q2_answer.strip()) < 10:
-        return True
+    # Only free-text paths need length ambiguity checks
+    if q1_answer in ["not_sure_fit", "not_ready"]:
+        if isinstance(q2_answer, str) and len(q2_answer.strip()) < 10:
+            return True
 
     return False
-
 
 # --- Q3 ---
 
