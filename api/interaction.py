@@ -6,9 +6,14 @@ from core.question_flow import get_q1, get_q2, get_q3, should_ask_q3
 from core.classifier import classify
 from core.output_builder import build_output
 from security.validation import validate_required, reject_unknown_fields, validate_string
+from security.rate_limit import allow_request
 
 
 def start_interaction(request: dict) -> dict:
+
+    key = f"start:{request.get('user_id', 'unknown')}"
+    if not allow_request(key, limit=10, window_seconds=60):
+        return {"error": "Rate limited", "code": "RATE_LIMITED"}
     allowed_fields = ["user_id", "session_id", "trigger_type"]
 
     if not validate_required(request, allowed_fields):
@@ -42,6 +47,10 @@ def start_interaction(request: dict) -> dict:
 
 
 def answer_interaction(request: dict) -> dict:
+
+    key = f"answer:{request.get('interaction_id', 'unknown')}"
+    if not allow_request(key, limit=30, window_seconds=60):
+        return {"error": "Rate limited", "code": "RATE_LIMITED"}
     allowed_fields = ["interaction_id", "question_id", "answer"]
 
     if not validate_required(request, allowed_fields):
