@@ -5,14 +5,26 @@ from storage.repository import save_interaction, get_interaction, update_interac
 from core.question_flow import get_q1, get_q2, get_q3, should_ask_q3
 from core.classifier import classify
 from core.output_builder import build_output
+from security.validation import validate_required, reject_unknown_fields, validate_string
 
 
 def start_interaction(request: dict) -> dict:
-    required = ["user_id", "session_id", "trigger_type"]
+    allowed_fields = ["user_id", "session_id", "trigger_type"]
 
-    for field in required:
-        if field not in request:
-            return {"error": "Invalid request", "code": "INVALID_INPUT"}
+    if not validate_required(request, allowed_fields):
+        return {"error": "Invalid request", "code": "INVALID_INPUT"}
+
+    if not reject_unknown_fields(request, allowed_fields):
+        return {"error": "Unknown field", "code": "UNKNOWN_FIELD"}
+
+    if not validate_string(request["user_id"], 128):
+        return {"error": "Invalid user_id", "code": "INVALID_INPUT"}
+
+    if not validate_string(request["session_id"], 128):
+        return {"error": "Invalid session_id", "code": "INVALID_INPUT"}
+
+    if request["trigger_type"] != "repeat_pricing_visit":
+        return {"error": "Invalid trigger_type", "code": "INVALID_INPUT"}
 
     interaction = Interaction(
         user_id=request["user_id"],
@@ -30,11 +42,19 @@ def start_interaction(request: dict) -> dict:
 
 
 def answer_interaction(request: dict) -> dict:
-    required = ["interaction_id", "question_id", "answer"]
+    allowed_fields = ["interaction_id", "question_id", "answer"]
 
-    for field in required:
-        if field not in request:
-            return {"error": "Invalid request", "code": "INVALID_INPUT"}
+    if not validate_required(request, allowed_fields):
+        return {"error": "Invalid request", "code": "INVALID_INPUT"}
+
+    if not reject_unknown_fields(request, allowed_fields):
+        return {"error": "Unknown field", "code": "UNKNOWN_FIELD"}
+
+    if request["question_id"] not in ["q1", "q2", "q3"]:
+        return {"error": "Invalid question_id", "code": "INVALID_INPUT"}
+
+    if not validate_string(request["answer"], 280):
+        return {"error": "Invalid answer", "code": "INVALID_INPUT"}
 
     interaction = get_interaction(request["interaction_id"])
 
