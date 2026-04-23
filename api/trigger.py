@@ -7,10 +7,6 @@ from security.rate_limit import allow_request
 
 
 def trigger_check(request: dict) -> dict:
-
-    key = f"trigger:{request.get('session_id', 'unknown')}"
-    if not allow_request(key, limit=60, window_seconds=60):
-        return {"error": "Rate limited", "code": "RATE_LIMITED"}
     allowed_fields = [
         "pricing_page_sessions_last_30d",
         "has_converted",
@@ -24,6 +20,10 @@ def trigger_check(request: dict) -> dict:
 
     if not reject_unknown_fields(request, allowed_fields):
         return {"error": "Unknown field", "code": "UNKNOWN_FIELD"}
+
+    key = f"trigger:{request.get('session_id', 'unknown')}"
+    if not allow_request(key, limit=60, window_seconds=60):
+        return {"error": "Rate limited", "code": "RATE_LIMITED"}
 
     if request["current_page"] != "/pricing":
         return {"show": False}
