@@ -28,6 +28,19 @@ def run_security_tests():
 
     print(res2)
 
+    print("\nTest 3 — Rate limit trigger")
+
+    for i in range(65):
+        res3 = trigger_check({
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": False,
+            "current_page": "/pricing",
+            "session_id": "rate_test",
+            "cooldown_ok": True,
+        })
+
+    print(res3)
+
 
 if __name__ == "__main__":
     run_security_tests()
