@@ -34,3 +34,9 @@ def validate_string(value, max_length=280):
 
 def validate_enum(value, allowed_values: list):
     return value in allowed_values
+def validate_int(value):
+    return isinstance(value, int)
+
+
+def validate_bool(value):
+    return isinstance(value, bool)
