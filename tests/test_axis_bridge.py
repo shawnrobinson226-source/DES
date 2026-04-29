@@ -54,7 +54,6 @@ def test_all_friction_type_mappings():
         "information_gap": "perceptual",
         "fit_uncertainty": "behavioral",
         "trust_deficit": "narrative",
-        "unknown": "continuity",
     }
 
     for friction_type, classification in cases.items():
@@ -82,20 +81,11 @@ def test_uses_des_result_trigger_when_present():
     assert payload["trigger"] == "completed_des_interaction"
 
 
-def test_falls_back_to_output_title_when_trigger_missing():
+def test_missing_trigger_fails():
     des_result = completed_result(title="Lets clarify the differences")
     del des_result["trigger"]
 
-    payload = build_axis_payload(des_result)
-
-    assert payload["trigger"] == "Lets clarify the differences"
-
-
-def test_missing_trigger_fails_when_no_valid_fallback_exists():
-    des_result = completed_result(title="")
-    del des_result["trigger"]
-
-    assert_bridge_error(des_result, "Missing trigger")
+    assert_bridge_error(des_result, "Trigger must be a non-empty string")
 
 
 def test_empty_trigger_fails():
@@ -103,7 +93,7 @@ def test_empty_trigger_fails():
 
 
 def test_unknown_friction_type_fails():
-    assert_bridge_error(completed_result(friction_type="emotional"), "Unknown friction_type")
+    assert_bridge_error(completed_result(friction_type="unknown"), "Unknown friction_type")
 
 
 def test_unknown_output_type_fails():
@@ -164,8 +154,7 @@ def run_test():
     test_all_friction_type_mappings()
     test_all_output_type_mappings()
     test_uses_des_result_trigger_when_present()
-    test_falls_back_to_output_title_when_trigger_missing()
-    test_missing_trigger_fails_when_no_valid_fallback_exists()
+    test_missing_trigger_fails()
     test_empty_trigger_fails()
     test_unknown_friction_type_fails()
     test_unknown_output_type_fails()
