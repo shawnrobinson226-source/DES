@@ -1,0 +1,2532 @@
+{
+  "source_commit": "b3117c036d5c04c2102fe884ba48e806155475ac",
+  "cases": {
+    "dont_understand_difference__plan_a_vs_b": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "dont_understand_difference"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Which plans are you comparing?",
+              "options": [
+                "plan_a_vs_b",
+                "plan_b_vs_c",
+                "all_plans"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "plan_a_vs_b"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dont_understand_difference__plan_b_vs_c": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "dont_understand_difference"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Which plans are you comparing?",
+              "options": [
+                "plan_a_vs_b",
+                "plan_b_vs_c",
+                "all_plans"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "plan_b_vs_c"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "dont_understand_difference__all_plans": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "dont_understand_difference"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Which plans are you comparing?",
+              "options": [
+                "plan_a_vs_b",
+                "plan_b_vs_c",
+                "all_plans"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "all_plans"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "too_expensive__total_cost": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "total_cost"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "too_expensive__value": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "value"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "too_expensive__risk": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "risk"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "not_sure_fit__long_text": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_sure_fit"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What are you trying to use this for?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "after budget approval"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "not_sure_fit__short_text": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_sure_fit"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What are you trying to use this for?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "soon"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "clarity"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "not_sure_fit__empty_text": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_sure_fit"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What are you trying to use this for?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": ""
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "clarity"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "not_ready__long_text": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_ready"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What needs to happen before you’re ready?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "after budget approval"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "not_ready__short_text": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_ready"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What needs to happen before you’re ready?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "soon"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "clarity"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "not_ready__empty_text": {
+      "group": "q1_q2",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_ready"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What needs to happen before you’re ready?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": ""
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "clarity"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "other__fallback_q2__clarity": {
+      "group": "other_q3",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "other"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Can you clarify a bit more?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "not sure"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "clarity"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "other__fallback_q2__fit": {
+      "group": "other_q3",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "other"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Can you clarify a bit more?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "not sure"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "fit"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "other__fallback_q2__trust": {
+      "group": "other_q3",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "other"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Can you clarify a bit more?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "not sure"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "trust"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "other__fallback_q2__cost": {
+      "group": "other_q3",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "other"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Can you clarify a bit more?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "not sure"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "cost"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "unknown_q1": {
+      "group": "unknown_and_fallback",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "banana"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Can you clarify a bit more?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "something specific"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "empty_q1": {
+      "group": "unknown_and_fallback",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": ""
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "Can you clarify a bit more?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "something specific"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "too_expensive__unmapped_q2": {
+      "group": "unknown_and_fallback",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "unmapped"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "too_expensive__empty_q2__q3_trust": {
+      "group": "unknown_and_fallback",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": ""
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q3",
+              "text": "Which of these best describes your situation?",
+              "options": [
+                "clarity",
+                "fit",
+                "trust",
+                "cost"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "trust"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "q2_before_q1": {
+      "group": "order",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "value"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "information_gap",
+            "output": {
+              "output_type": "clarify",
+              "title": "Let’s clarify the differences",
+              "body": "Here’s a clear breakdown of what each option does so you can decide.",
+              "cta": "View comparison",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "q3_before_q1": {
+      "group": "order",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q3",
+            "answer": "trust"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "answers_after_result": {
+      "group": "order",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "value"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "not_sure_fit"
+          },
+          "response": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What are you trying to use this for?",
+              "input": "text"
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "after budget approval"
+          },
+          "response": {
+            "done": true,
+            "friction_type": "fit_uncertainty",
+            "output": {
+              "output_type": "filter",
+              "title": "This may not be the right fit",
+              "body": "Based on your situation, this might not match what you need right now.",
+              "cta": "",
+              "ui": {
+                "suppress_primary_cta": true,
+                "recommend_exit": true
+              }
+            }
+          }
+        }
+      ]
+    },
+    "trigger_shows": {
+      "group": "trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "show": true
+          }
+        }
+      ]
+    },
+    "trigger_not_pricing_page": {
+      "group": "trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/dashboard",
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "show": false
+          }
+        }
+      ]
+    },
+    "trigger_suppressed_by_active_interaction": {
+      "group": "trigger",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "show": false
+          }
+        }
+      ]
+    },
+    "trigger_missing_field": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": "s1"
+          },
+          "response": {
+            "error": "Invalid request",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "trigger_unknown_field": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": "s1",
+            "cooldown_ok": true,
+            "extra_field": "x"
+          },
+          "response": {
+            "error": "Unknown field",
+            "code": "UNKNOWN_FIELD"
+          }
+        }
+      ]
+    },
+    "trigger_sessions_not_int": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": "2",
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "error": "Invalid type",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "trigger_has_converted_not_bool": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": "false",
+            "current_page": "/pricing",
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "error": "Invalid type",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "trigger_current_page_not_string": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": 1,
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "error": "Invalid current_page",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "trigger_current_page_too_long": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+            "session_id": "s1",
+            "cooldown_ok": true
+          },
+          "response": {
+            "error": "Invalid current_page",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "trigger_session_id_not_string": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": 1,
+            "cooldown_ok": true
+          },
+          "response": {
+            "error": "Invalid session_id",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "trigger_cooldown_not_bool": {
+      "group": "errors_trigger",
+      "result": [
+        {
+          "endpoint": "trigger",
+          "request": {
+            "pricing_page_sessions_last_30d": 2,
+            "has_converted": false,
+            "current_page": "/pricing",
+            "session_id": "s1",
+            "cooldown_ok": 1
+          },
+          "response": {
+            "error": "Invalid type",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "start_missing_field": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "error": "Invalid request",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "start_unknown_field": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit",
+            "extra_field": "x"
+          },
+          "response": {
+            "error": "Unknown field",
+            "code": "UNKNOWN_FIELD"
+          }
+        }
+      ]
+    },
+    "start_wrong_trigger_type": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "operator_initiated"
+          },
+          "response": {
+            "error": "Invalid trigger_type",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "start_user_id_not_string": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": 1,
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "error": "Invalid user_id",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "start_user_id_too_long": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "error": "Invalid user_id",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "start_session_id_not_string": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": 1,
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "error": "Invalid session_id",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "start_session_id_too_long": {
+      "group": "errors_start",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "error": "Invalid session_id",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "answer_missing_field": {
+      "group": "errors_answer",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1"
+          },
+          "response": {
+            "error": "Invalid request",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "answer_unknown_field": {
+      "group": "errors_answer",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive",
+            "extra_field": "x"
+          },
+          "response": {
+            "error": "Unknown field",
+            "code": "UNKNOWN_FIELD"
+          }
+        }
+      ]
+    },
+    "answer_bad_question_id": {
+      "group": "errors_answer",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q4",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "error": "Invalid question_id",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "answer_too_long": {
+      "group": "errors_answer",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "response": {
+            "error": "Invalid answer",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "answer_not_string": {
+      "group": "errors_answer",
+      "result": [
+        {
+          "endpoint": "start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "response": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": 5
+          },
+          "response": {
+            "error": "Invalid answer",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "answer_interaction_not_found": {
+      "group": "errors_answer",
+      "result": [
+        {
+          "endpoint": "answer",
+          "request": {
+            "interaction_id": "00000000-0000-0000-0000-000000000000",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "response": {
+            "error": "Interaction not found",
+            "code": "INTERACTION_NOT_FOUND"
+          }
+        }
+      ]
+    },
+    "rate_limit_trigger": {
+      "group": "rate_limits",
+      "result": {
+        "endpoint": "trigger",
+        "request": {
+          "pricing_page_sessions_last_30d": 2,
+          "has_converted": false,
+          "current_page": "/pricing",
+          "session_id": "rate_test",
+          "cooldown_ok": true
+        },
+        "calls": 61,
+        "runs": [
+          {
+            "count": 60,
+            "response": {
+              "show": true
+            }
+          },
+          {
+            "count": 1,
+            "response": {
+              "error": "Rate limited",
+              "code": "RATE_LIMITED"
+            }
+          }
+        ]
+      }
+    },
+    "rate_limit_start": {
+      "group": "rate_limits",
+      "result": {
+        "endpoint": "start",
+        "request": {
+          "user_id": "rate_user",
+          "session_id": "s1",
+          "trigger_type": "repeat_pricing_visit"
+        },
+        "calls": 11,
+        "runs": [
+          {
+            "count": 10,
+            "response": {
+              "interaction_id": "<interaction_id>",
+              "done": false,
+              "question": {
+                "id": "q1",
+                "text": "What’s the main thing holding you back right now?",
+                "options": [
+                  "dont_understand_difference",
+                  "not_sure_fit",
+                  "too_expensive",
+                  "not_ready",
+                  "other"
+                ]
+              }
+            }
+          },
+          {
+            "count": 1,
+            "response": {
+              "error": "Rate limited",
+              "code": "RATE_LIMITED"
+            }
+          }
+        ]
+      }
+    },
+    "rate_limit_answer": {
+      "group": "rate_limits",
+      "result": {
+        "endpoint": "answer",
+        "request": {
+          "interaction_id": "00000000-0000-0000-0000-000000000000",
+          "question_id": "q1",
+          "answer": "too_expensive"
+        },
+        "calls": 31,
+        "runs": [
+          {
+            "count": 30,
+            "response": {
+              "error": "Interaction not found",
+              "code": "INTERACTION_NOT_FOUND"
+            }
+          },
+          {
+            "count": 1,
+            "response": {
+              "error": "Rate limited",
+              "code": "RATE_LIMITED"
+            }
+          }
+        ]
+      }
+    },
+    "http_start_and_answer_200": {
+      "group": "http",
+      "result": [
+        {
+          "path": "/interaction/start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "repeat_pricing_visit"
+          },
+          "status": 200,
+          "body": {
+            "interaction_id": "<interaction_id>",
+            "done": false,
+            "question": {
+              "id": "q1",
+              "text": "What’s the main thing holding you back right now?",
+              "options": [
+                "dont_understand_difference",
+                "not_sure_fit",
+                "too_expensive",
+                "not_ready",
+                "other"
+              ]
+            }
+          }
+        },
+        {
+          "path": "/interaction/answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "status": 200,
+          "body": {
+            "done": false,
+            "question": {
+              "id": "q2",
+              "text": "What makes it feel expensive?",
+              "options": [
+                "total_cost",
+                "value",
+                "risk"
+              ]
+            }
+          }
+        },
+        {
+          "path": "/interaction/answer",
+          "request": {
+            "interaction_id": "<interaction_id>",
+            "question_id": "q2",
+            "answer": "value"
+          },
+          "status": 200,
+          "body": {
+            "done": true,
+            "friction_type": "trust_deficit",
+            "output": {
+              "output_type": "proof",
+              "title": "Here’s how this holds up",
+              "body": "You can review real outcomes and evidence to evaluate this properly.",
+              "cta": "View proof",
+              "ui": {
+                "suppress_primary_cta": false,
+                "recommend_exit": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "http_handler_error_200": {
+      "group": "http",
+      "result": [
+        {
+          "path": "/interaction/start",
+          "request": {
+            "user_id": "u1",
+            "session_id": "s1",
+            "trigger_type": "operator_initiated"
+          },
+          "status": 200,
+          "body": {
+            "error": "Invalid trigger_type",
+            "code": "INVALID_INPUT"
+          }
+        }
+      ]
+    },
+    "http_non_object_body_422": {
+      "group": "http",
+      "result": [
+        {
+          "path": "/interaction/start",
+          "request": [],
+          "status": 422
+        }
+      ]
+    },
+    "http_unhashable_interaction_id_500": {
+      "group": "http",
+      "result": [
+        {
+          "path": "/interaction/answer",
+          "request": {
+            "interaction_id": [
+              "a"
+            ],
+            "question_id": "q1",
+            "answer": "too_expensive"
+          },
+          "status": 500
+        }
+      ]
+    }
+  }
+}
