@@ -5,6 +5,7 @@ from storage.repository import save_interaction, get_interaction, update_interac
 from core.question_flow import get_q1, get_q2, get_q3, should_ask_q3
 from core.classifier import classify
 from core.output_builder import build_output
+from core.operator_flow import start_operator_interaction, answer_operator_interaction
 from security.validation import validate_required, reject_unknown_fields, validate_string
 from security.rate_limit import allow_request
 
@@ -28,8 +29,11 @@ def start_interaction(request: dict) -> dict:
     if not validate_string(request["session_id"], 128):
         return {"error": "Invalid session_id", "code": "INVALID_INPUT"}
 
-    if request["trigger_type"] != "repeat_pricing_visit":
+    if request["trigger_type"] not in ["repeat_pricing_visit", "operator_initiated"]:
         return {"error": "Invalid trigger_type", "code": "INVALID_INPUT"}
+
+    if request["trigger_type"] == "operator_initiated":
+        return start_operator_interaction(request["user_id"], request["session_id"])
 
     interaction = Interaction(
         user_id=request["user_id"],
@@ -69,6 +73,9 @@ def answer_interaction(request: dict) -> dict:
 
     if not interaction:
         return {"error": "Interaction not found", "code": "INTERACTION_NOT_FOUND"}
+
+    if interaction.trigger_type == "operator_initiated":
+        return answer_operator_interaction(interaction, request["question_id"], request["answer"])
 
     question_id = request["question_id"]
     answer = request["answer"]
