@@ -21,3 +21,8 @@ class Interaction:
     resolved: bool = False
     abandoned: bool = False
     created_at: datetime = field(default_factory=datetime.utcnow)
+    question_set_id: Optional[str] = None
+    question_set_version: Optional[str] = None
+    resolution_status: Optional[str] = None
+    axis_classification: Optional[str] = None
+    unresolved_reason: Optional[str] = None
