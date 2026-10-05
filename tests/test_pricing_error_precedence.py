@@ -38,7 +38,7 @@ def test_rate_limit_wins_over_invalid_start_input():
         assert "interaction_id" in start_interaction(pricing_cases.start(user_id="u_rate")[1])
 
     response = start_interaction(
-        pricing_cases.start(user_id="u_rate", trigger_type="operator_initiated")[1]
+        pricing_cases.start(user_id="u_rate", trigger_type="unknown_trigger")[1]
     )
 
     assert response == {"error": "Rate limited", "code": "RATE_LIMITED"}
@@ -48,7 +48,7 @@ def test_rate_limit_wins_over_invalid_start_input():
 def test_invalid_start_requests_count_toward_rate_limit():
     for _ in range(10):
         response = start_interaction(
-            pricing_cases.start(user_id="u_rate", trigger_type="operator_initiated")[1]
+            pricing_cases.start(user_id="u_rate", trigger_type="unknown_trigger")[1]
         )
         assert response == {"error": "Invalid trigger_type", "code": "INVALID_INPUT"}
 
@@ -61,7 +61,7 @@ def test_invalid_start_requests_count_toward_rate_limit():
 def test_over_length_user_id_wins_over_wrong_trigger_type():
     # api/interaction.py:25-26 validates user_id before trigger_type at :31-32.
     response = start_interaction(
-        pricing_cases.start(user_id="u" * 129, trigger_type="operator_initiated")[1]
+        pricing_cases.start(user_id="u" * 129, trigger_type="unknown_trigger")[1]
     )
 
     assert response == {"error": "Invalid user_id", "code": "INVALID_INPUT"}

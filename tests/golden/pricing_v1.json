@@ -2021,7 +2021,7 @@
           "request": {
             "user_id": "u1",
             "session_id": "s1",
-            "trigger_type": "operator_initiated"
+            "trigger_type": "unknown_trigger"
           },
           "response": {
             "error": "Invalid trigger_type",
@@ -2492,7 +2492,7 @@
           "request": {
             "user_id": "u1",
             "session_id": "s1",
-            "trigger_type": "operator_initiated"
+            "trigger_type": "unknown_trigger"
           },
           "status": 200,
           "body": {

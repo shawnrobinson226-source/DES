@@ -255,7 +255,7 @@ case("errors_start", "start_missing_field",
 case("errors_start", "start_unknown_field",
      lambda: run_steps([with_extra(start(), "extra_field", "x")]))
 case("errors_start", "start_wrong_trigger_type",
-     lambda: run_steps([start(trigger_type="operator_initiated")]))
+     lambda: run_steps([start(trigger_type="unknown_trigger")]))
 case("errors_start", "start_user_id_not_string",
      lambda: run_steps([start(user_id=1)]))
 case("errors_start", "start_user_id_too_long",
@@ -294,7 +294,7 @@ case("http", "http_start_and_answer_200", lambda: run_http([
     ("/interaction/answer", answer("q2", "value")[1]),
 ]))
 case("http", "http_handler_error_200", lambda: run_http([
-    ("/interaction/start", start(trigger_type="operator_initiated")[1]),
+    ("/interaction/start", start(trigger_type="unknown_trigger")[1]),
 ]))
 # Status only: FastAPI's 422 detail body varies between versions.
 case("http", "http_non_object_body_422", lambda: run_http([
