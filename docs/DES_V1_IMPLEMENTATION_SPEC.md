@@ -4,9 +4,12 @@
 
 DES V1 is a deterministic decision-friction resolution layer.
 
-It decides whether to offer a short friction-resolution interaction, asks a fixed
-question flow, classifies the friction into a small controlled set, and returns a
-structured output for a downstream UI to render.
+It exposes a legacy `repeat_pricing_visit` flow that decides whether to offer a
+short friction-resolution interaction, asks a fixed question flow, classifies
+friction, and returns structured output. It also exposes an
+`operator_initiated` flow that follows a validated, versioned question set and
+returns a resolved classification or an unresolved reason. See
+[DES Operator Contract V1](DES_OPERATOR_CONTRACT_V1.md).
 
 DES V1 does not persuade, infer emotion, generate AI content, store long-term
 identity, duplicate AXIS logic, or assume Sapphire UI behavior.
@@ -17,17 +20,21 @@ DES owns:
 
 - trigger detection
 - question flow with a maximum of three questions
-- deterministic friction classification
-- deterministic output selection
+- deterministic legacy friction classification and output selection
+- deterministic operator path resolution against validated question sets
 - strict request validation for its own API boundary
 
-AXIS owns taxonomy, scoring, truth, outcomes, and any deeper intelligence layer.
-DES V1 makes no AXIS calls and must not implement AXIS-equivalent logic.
+AXIS owns its five classification names, scoring, truth, execution, outcomes,
+and any deeper intelligence layer. DES holds an allowlisted copy of the five
+names for boundary validation. No interaction route calls AXIS; the only
+in-repository caller of `core.axis.bridge.execute_axis_request` is the CLI in
+`ui/des_axis_flow.py`. DES must not implement AXIS-equivalent logic. The separate
+legacy pricing adapter is documented in [DES AXIS Bridge](DES_AXIS_BRIDGE.md).
 
 Sapphire owns UI rendering, session presentation, and user-interface behavior.
 DES returns structured JSON only and does not assume how Sapphire displays it.
 
-## Trigger Rules
+## Legacy Pricing Trigger Rules
 
 The V1 trigger is the pure function `should_trigger`.
 
@@ -45,7 +52,7 @@ does not write to storage.
 The `/trigger/check` API validates the request, rate-limits by `session_id`, checks
 active in-memory interactions, and returns `{"show": bool}`.
 
-## Question Flow
+## Legacy Pricing Question Flow
 
 DES V1 asks at most three questions.
 
@@ -72,7 +79,16 @@ Q3 is asked only when ambiguity remains:
 
 Q3 options are `clarity`, `fit`, `trust`, and `cost`.
 
-## Friction Types
+## Operator Question Flow
+
+The operator flow uses the active entry in `OPERATOR_QUESTION_SETS`, pins its
+`id` and `version`, and accepts exact option ids for the expected next question.
+The production registry starts empty and no bootstrap exists in this repository,
+so the route returns an HTTP 200 error body with code
+`QUESTION_SET_UNAVAILABLE` until external bootstrap code registers and activates
+production content. The complete contract is in [DES Operator Contract V1](DES_OPERATOR_CONTRACT_V1.md).
+
+## Legacy Pricing Friction Types
 
 The classifier returns exactly one of:
 
@@ -94,7 +110,7 @@ Current deterministic mappings:
 
 Unknown or unmapped inputs fall back to `information_gap`.
 
-## Output Types
+## Legacy Pricing Output Types
 
 `build_output` maps friction types to controlled output payloads:
 
@@ -135,8 +151,10 @@ Valid states:
 - `abandoned`
 
 The current API flow does not import or enforce the state machine. It directly
-sets interaction states to `interaction_started`, `q1_answered`, `q2_answered`,
-and `output_rendered`, with `resolved = True` when an output is returned.
+sets pricing interaction states to `interaction_started`, `q1_answered`,
+`q2_answered`, and `output_rendered`, with `resolved = True` when an output is
+returned. Operator interactions leave `state` at `interaction_started` and use
+`resolved` plus `resolution_status` for completion.
 
 For V1 hardening, the state machine is documented and tested as reserved contract
 surface. It is not wired into live flow to avoid behavior drift.
@@ -150,14 +168,16 @@ FastAPI exposes:
 - `POST /interaction/answer`
 - `GET /health`
 
-`/interaction/start` accepts `user_id`, `session_id`, and
-`trigger_type == "repeat_pricing_visit"`, creates an in-memory interaction, and
-returns Q1.
+`/interaction/start` accepts `user_id`, `session_id`, and `trigger_type` equal to
+`repeat_pricing_visit` or `operator_initiated`. The pricing flow creates an
+in-memory interaction and returns its fixed Q1. The operator flow requires an
+active production question set; none is bootstrapped in this repository.
 
-`/interaction/answer` accepts `interaction_id`, `question_id`, and `answer`.
-It advances the fixed flow, classifies when enough information exists, builds the
-output, updates the in-memory interaction, and returns either the next question or
-the final output.
+`/interaction/answer` accepts `interaction_id`, `question_id`, and `answer`. It
+dispatches by the stored interaction's `trigger_type`. Pricing advances the fixed
+flow and produces legacy pricing output. Operator handling follows the pinned
+question set and returns the next question, a resolved classification, or an
+unresolved reason.
 
 ## Security Rules
 
@@ -191,14 +211,15 @@ DES V1 intentionally does not include:
 
 - AI or generated copy
 - persuasion, urgency, pressure, or manipulation logic
-- AXIS calls
+- interaction-route AXIS calls or an operator-to-AXIS execution path
 - Sapphire UI logic
 - persistence beyond process-local in-memory storage
 - long-term user identity models
 - emotion inference
-- dynamic question expansion
+- runtime-generated question content
 - additional question count beyond three
-- additional output families beyond `clarify`, `filter`, and `proof`
+- additional legacy pricing output families beyond `clarify`, `filter`, and
+  `proof`
 
 ## Test Expectations
 
@@ -212,5 +233,6 @@ The V1 foundation is expected to pass:
 - `python -m tests.test_state_machine`
 - `python -m pytest` when pytest is available
 
-Tests should preserve deterministic behavior and cover classifier mappings, output
-payloads, trigger gating, and the reserved state machine contract.
+Tests should preserve deterministic behavior and cover classifier mappings,
+output payloads, trigger gating, the reserved state machine contract, operator
+response validation, question-set version pinning, and pricing preservation.

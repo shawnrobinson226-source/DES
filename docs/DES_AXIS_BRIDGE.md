@@ -2,8 +2,9 @@
 
 ## Purpose
 
-The DES AXIS bridge is an adapter layer. It converts completed DES decision
-friction output into a valid AXIS execution request.
+The DES AXIS bridge is an adapter layer for completed legacy pricing output. It
+converts DES `friction_type` output into a valid AXIS execution request. It is
+not an operator-flow adapter.
 
 It translates interfaces, enforces the canonical mapping, and passes data
 forward. It does not add decision logic, infer meaning, mutate DES behavior,
@@ -40,8 +41,8 @@ adapter response. It does not hardcode secrets.
 
 ## Mapping Table
 
-The canonical DES to AXIS classification mapping lives in one place only:
-`core/axis/bridge.py`.
+The canonical legacy pricing-to-AXIS classification mapping lives in one place
+only: `core/axis/bridge.py`.
 
 | DES friction_type | AXIS classification |
 | --- | --- |
@@ -53,7 +54,7 @@ Unknown friction types fail closed. There is no fallback classification.
 
 ## Request Flow
 
-1. DES produces completed output.
+1. DES produces completed legacy pricing output.
 2. An explicit caller provides the raw trigger text and `operator_id`.
 3. The adapter maps DES `friction_type` to AXIS `classification`.
 4. The adapter builds the AXIS execute payload.
@@ -75,6 +76,16 @@ The AXIS execute payload contains exactly:
 ```
 
 The adapter never includes `outcome`. Outcome is not known at bridge time.
+
+## Operator Flow Exclusion
+
+`operator_initiated` terminal responses contain `classification` or `reason`,
+not pricing `friction_type` and `output` fields. They must not be passed to
+`build_axis_payload` or `build_axis_execute_payload`.
+
+The operator flow validates resolved outcomes against the allowlisted AXIS class
+names, but it makes no AXIS request. Any future operator-to-AXIS execution path
+requires a separate contract and explicit approval.
 
 ## Error Handling
 

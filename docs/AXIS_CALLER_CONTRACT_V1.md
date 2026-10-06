@@ -2,11 +2,11 @@
 
 ## Status
 
-This is a design contract only.
+The explicit legacy pricing caller is implemented in `core/axis/bridge.py`.
 
-No AXIS caller exists in DES V1. This document defines the future boundary for
-how DES may be allowed to call AXIS after separate approval. It does not add
-code, routes, persistence, network clients, or runtime behavior.
+DES interaction API routes do not invoke it automatically. This contract scopes
+the implemented caller and any future route wiring. It does not authorize an
+operator-to-AXIS path.
 
 ## Core Rule
 
@@ -19,13 +19,14 @@ the governing execution layer.
 
 ## When A Call Is Allowed
 
-A DES to AXIS call is allowed only after DES has produced a completed result.
+A legacy pricing DES-to-AXIS call is allowed only after DES has produced a
+completed pricing result.
 
 Allowed timing:
 
 - after DES classification is complete
 - after DES output selection is complete
-- after `core/axis_bridge.py` has produced a valid AXIS payload
+- after `core/axis/bridge.py` has produced a valid AXIS payload
 - after an explicit caller action has requested execution
 
 Disallowed timing:
@@ -46,11 +47,13 @@ Only an explicit external actor may request the future AXIS call:
 - a manual confirmation layer
 
 DES itself must not decide to execute AXIS automatically.
+The current `operator_initiated` flow sends nothing to AXIS.
 
 ## What Is Sent
 
-The future caller may send only the payload produced by
-`core/axis_bridge.py`.
+The caller may send only the payload produced by `core/axis/bridge.py`. The
+compatibility wrapper `core/axis_bridge.py` accepts completed legacy pricing
+results and delegates to that canonical mapper.
 
 No additional fields are allowed.
 No hidden metadata is allowed.
@@ -84,9 +87,8 @@ The future caller must not add:
 
 ## How The Call Happens
 
-This section is conceptual only.
-
-If a future implementation is approved, the only allowed AXIS execution target is:
+`execute_axis_request` implements the explicit call. The only allowed AXIS
+execution target is:
 
 ```text
 POST /api/v2/execute
@@ -99,13 +101,13 @@ The request must include:
 
 Before sending, the future caller must validate:
 
-- the payload came from `core/axis_bridge.py`
+- the payload came from `core/axis/bridge.py`
 - the payload contains only the allowed AXIS fields
 - `classification` is one of the AXIS-accepted classification values
 - `trigger` and `next_action` are non-empty strings
 - `reference` is a boolean
-- `stability` is a number from 0 to 10
-- `impact` is a number from 0 to 10
+- `stability` and `impact` are non-boolean numbers; the current implementation
+  does not enforce 0-to-10 bounds
 - `x-operator-id` is present and non-empty
 
 If validation fails, the caller must fail closed and send nothing.
@@ -155,22 +157,26 @@ DES never stores AXIS execution results.
 DES never sends identity or hidden metadata.
 DES never adds fields outside the bridge payload contract.
 
-## Future Implementation Slot
+## Implementation Location
 
-The future implementation slot is:
+The caller is implemented at:
 
 ```text
-core/axis_client.py
+core/axis/bridge.py
 ```
 
-This file is not created yet.
-
-If later approved, `core/axis_client.py` will be the only place in DES where AXIS
-calls are allowed. It must wrap the output of `core/axis_bridge.py` and enforce
-the full validation contract again immediately before sending.
+`execute_axis_request` wraps the canonical payload builder, requires an explicit
+operator id, uses `AXIS_BASE_URL` unless an explicit base URL is supplied, sends
+only to `/api/v2/execute`, and uses a 10-second timeout.
+The only in-repository caller is the CLI in `ui/des_axis_flow.py`, which supplies
+the fixed value `local-operator`; see the current limitation in
+[Security Baseline](SECURITY_BASELINE.md).
 
 No API route, classifier, trigger logic, question flow, or output builder may
 call AXIS directly.
+
+The operator flow is not an AXIS caller. A future operator execution path needs
+a separate contract and approval.
 
 ## Non-Goals
 

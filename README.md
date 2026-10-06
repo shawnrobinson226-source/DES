@@ -2,9 +2,15 @@
 
 DES is a deterministic decision-friction resolution layer.
 
+It exposes two separate interaction flows:
+
+- `repeat_pricing_visit`: the legacy pricing flow
+- `operator_initiated`: a versioned, question-set-driven operator flow
+
 It:
 - detects friction
 - asks up to 3 questions
+- follows validated question-set routes for operator interactions
 - classifies friction
 - returns structured output
 
@@ -15,10 +21,19 @@ It does NOT:
 - duplicate AXIS
 - assume UI (Sapphire)
 
-Core outputs:
+Legacy pricing outputs:
 - clarify
 - filter
 - proof
+
+Operator terminal outcomes:
+- resolved with an allowlisted AXIS classification name
+- unresolved with an explicit reason
+
+See [DES Operator Contract V1](docs/DES_OPERATOR_CONTRACT_V1.md) for the
+`operator_initiated` response and storage contract. The production operator
+question-set registry is currently empty; this repository contains no bootstrap
+that registers or activates production content.
 
 System principles:
 - deterministic behavior

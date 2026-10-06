@@ -2,17 +2,19 @@
 
 ## Status
 
-This document describes bridge preparation only.
+The bridge is implemented for legacy pricing output.
 
-DES V1 does not automatically execute AXIS. It does not call the live AXIS URL,
-does not include a network client, and does not wire the bridge mapper into DES
-API routes.
+DES interaction API routes do not automatically execute AXIS and do not wire the
+bridge into start or answer handling. An explicit caller can use
+`core.axis.bridge.execute_axis_request`, which posts to the configured AXIS URL.
 
-The only bridge behavior in V1 is a deterministic payload mapper:
+The compatibility mapper for completed legacy pricing results is:
 
 ```python
 build_axis_payload(des_result: dict) -> dict
 ```
+
+The operator flow is excluded from this bridge and makes no AXIS request.
 
 ## Separation
 
@@ -24,8 +26,7 @@ DES remains separate from AXIS and Sapphire. DES does not duplicate AXIS logic,
 redefine AXIS taxonomy, infer emotions, persuade, store long-term identity, or
 bypass AXIS governance.
 
-AXIS remains the source of truth and governing engine. A future AXIS caller would
-need explicit, separate approval before any live request is added.
+AXIS remains the source of truth and governing engine.
 
 ## Friction Mapping
 
@@ -36,9 +37,8 @@ DES `friction_type` maps to AXIS `classification`:
 | `information_gap` | `perceptual` |
 | `fit_uncertainty` | `behavioral` |
 | `trust_deficit` | `narrative` |
-| `unknown` | `continuity` |
 
-Unknown friction values fail closed with `BridgeError`.
+Unknown friction values fail closed with `AxisBridgeError`.
 
 ## Output Mapping
 
@@ -50,7 +50,7 @@ DES `output.output_type` maps to AXIS `next_action`:
 | `filter` | `Confirm fit or non-fit and act on the result.` |
 | `proof` | `Review the evidence and separate verified claims from assumptions.` |
 
-Unknown output values fail closed with `BridgeError`.
+Unknown output values fail closed with `AxisBridgeError`.
 
 ## Payload Contract
 
@@ -92,22 +92,18 @@ Defaults:
 
 ## Trigger Source
 
-The mapper prefers `des_result["trigger"]`.
-
-If `trigger` is absent, the mapper may use `des_result["output"]["title"]` as a
-documented fallback label for older completed DES results. This fallback is not
-inference and does not add behavior to DES decision logic.
-
-If `trigger` is present but empty, the mapper fails closed. It does not fall back
-to `output.title` because an explicit empty trigger is invalid input.
+The compatibility mapper passes `des_result["trigger"]` to the canonical mapper.
+A missing, empty, or whitespace-only trigger fails closed. There is no
+`output.title` fallback.
 
 ## Failure Cases
 
-`build_axis_payload` raises `BridgeError`, a `ValueError` subclass, when:
+`build_axis_payload` raises `AxisBridgeError`, a `ValueError` subclass exported
+by the compatibility wrapper under its legacy exception alias, when:
 
 - the DES result is not a dict
-- `trigger` is present but empty
-- `trigger` is missing and `output.title` is not a valid fallback
+- `trigger` is missing, empty, or whitespace-only; there is no `output.title`
+  fallback
 - `friction_type` is missing
 - `friction_type` is unknown
 - `output` is missing
@@ -116,12 +112,18 @@ to `output.title` because an explicit empty trigger is invalid input.
 - `output.output_type` is unknown
 - the produced payload fields differ from the exact allowed AXIS field set
 
-Runtime validation uses explicit conditionals and `BridgeError`; it does not use
-assertions.
+Runtime validation uses explicit conditionals and `AxisBridgeError`; it does not
+use assertions.
 
-## Future Step
+## Execution Boundary
 
-The next step, if separately approved, would be an explicit AXIS client/caller
-that sends this payload to the locked AXIS V2 execute endpoint. That future work
-must be reviewed as a separate integration step and must not change DES V1
-decision behavior.
+`core.axis.bridge.execute_axis_request` is the explicit caller. It requires a
+non-empty `operator_id`, sends `x-operator-id`, posts only to
+`/api/v2/execute`, uses a 10-second timeout, and does not retry.
+
+It is not called by DES interaction routes. Wiring any automatic API execution,
+or adding an operator-to-AXIS path, requires separate approval and must not
+change DES decision behavior.
+
+Operator terminal responses are intentionally incompatible with
+`build_axis_payload`: they have no pricing `output` or `friction_type` fields.
