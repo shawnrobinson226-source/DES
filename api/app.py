@@ -28,4 +28,6 @@ def interaction_answer_route(payload: dict):
 
 @app.get("/health")
 def health():
-    return {"ok": True, "service": "DES", "version": "v1"}
+    # Deliberately minimal: this unauthenticated local readiness route does not
+    # disclose a version, filesystem path, configuration, or registry state.
+    return {"ok": True, "service": "DES"}

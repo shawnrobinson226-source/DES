@@ -55,6 +55,10 @@ Check the local health endpoint from the same machine:
 http://127.0.0.1:8000/health
 ```
 
+The unauthenticated health body is deliberately limited to `ok` and `service`.
+It does not disclose a version, filesystem path, configuration value, or
+question-set registry state.
+
 ## AXIS Boundary
 
 The operator interaction routes make no AXIS request. Do not configure AXIS
@@ -65,10 +69,14 @@ plugin boundary.
 ## Security Boundary
 
 - Loopback binding is a compensating control, not endpoint authentication.
-- The automated launch proof starts the checked-in launcher on a random
-  loopback port, reads `/health`, and begins one operator interaction.
-- The proof establishes the launcher bind and application behavior on the test
-  host. It does not establish firewall policy, container networking, reverse
+- The automated launch proofs start the checked-in launcher on a random
+  loopback port, read the minimal `/health` response, and exercise both the
+  active and default-empty operator states.
+- A command-line host argument and environment host value cannot override the
+  fixed bind. On a host with a non-loopback IPv4 address, the test also proves
+  that address refuses the launch port while `127.0.0.1` serves it.
+- An unknown question-set selection exits non-zero before the port binds.
+- These proofs do not establish firewall policy, container networking, reverse
   proxy policy, or suitability for remote deployment.
 - No access token, service key, operator id, or AXIS credential belongs in this
   repository or in the launch command.
