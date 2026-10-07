@@ -31,10 +31,11 @@ Operator terminal outcomes:
 - unresolved with an explicit reason
 
 See [DES Operator Contract V1](docs/DES_OPERATOR_CONTRACT_V1.md) for the
-`operator_initiated` response and storage contract. Production content is
-available but remains inactive unless an exact version is selected through the
-fail-closed startup bootstrap. See the
-[DES Local Launch Specification](docs/DES_LAUNCH_SPEC.md).
+`operator_initiated` response and storage contract. The candidate operator
+content is implemented but remains a draft pending explicit operator review;
+see the [Operator Question Set Review Gate](docs/OPERATOR_QUESTION_SET_V1_REVIEW.md).
+It is inactive unless an exact version is selected through the fail-closed
+startup bootstrap. See the [DES Local Launch Specification](docs/DES_LAUNCH_SPEC.md).
 
 System principles:
 - deterministic behavior

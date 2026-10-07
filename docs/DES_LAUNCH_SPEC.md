@@ -26,7 +26,8 @@ Activation is explicit and versioned. With the variable absent or empty, the
 operator registry remains empty and an operator start fails closed with
 `QUESTION_SET_UNAVAILABLE`.
 
-The only accepted production selection in this version is:
+The only accepted versioned selection in this build is shown below. Its
+content remains a draft until the operator closes the separate review gate:
 
 ```powershell
 $env:DES_OPERATOR_QUESTION_SET = "tri_operator_classification@1.0.0"
@@ -65,6 +66,21 @@ The operator interaction routes make no AXIS request. Do not configure AXIS
 credentials merely to launch or exercise DES questions. The first live AXIS
 request remains a separate, explicitly approved trial step at the Sapphire
 plugin boundary.
+
+## Recorded Contract Fixture
+
+`tools/record_operator_contract_v1.py` owns the real-loopback recording used to
+detect contract drift. It refuses to run if any AXIS URL, service token, or
+operator-id environment variable is present. The committed fixture records a
+full resolved path, a short path that skips q2, explicit unresolved, four
+wire-reproducible errors, and the default-empty state. `RESULT_VALIDATION_FAILED`
+and `NO_MATCHING_RULE` are retained separately and labeled contract-derived
+because the authored set cannot produce them on the wire.
+
+Random interaction ids are replaced by documented valid UUIDv4 values; response
+headers, the ephemeral port, and local paths are omitted. The drift test runs
+the recorder twice and requires byte-identical normalized output before
+comparing its wire content with the committed fixture.
 
 ## Security Boundary
 

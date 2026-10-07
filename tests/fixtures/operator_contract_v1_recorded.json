@@ -1,0 +1,663 @@
+{
+  "contract_version": "1.0.0",
+  "source": "recorded DES loopback plus labeled contract-derived cases",
+  "question_set": {
+    "id": "tri_operator_classification",
+    "version": "1.0.0"
+  },
+  "des_runtime_commit": "d67ad44f9b5c87583cd7e4644f63b297951b1b5d",
+  "recording_date": "2026-10-06",
+  "runtime": {
+    "python": "3.14.7",
+    "fastapi": "0.142.2",
+    "uvicorn": "0.54.0"
+  },
+  "recorder": "DES tools/record_operator_contract_v1.py",
+  "normalizations": [
+    "synthetic fixture user_id and session_id values",
+    "interaction_id replaced per scenario with a fixed valid UUIDv4",
+    "HTTP Date and Server headers omitted",
+    "ephemeral loopback port omitted",
+    "no local filesystem path recorded"
+  ],
+  "normalized_wire_sha256": "bbfeca38f76421b9f870906c76b820b7b17108e524fca32005b435d55e718ee6",
+  "recorded_wire": {
+    "full_length_resolved": [
+      {
+        "request": {
+          "user_id": "fixture-full-resolved-user",
+          "session_id": "fixture-full-resolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which kind of change is most needed before the next decision or action?",
+            "options": [
+              {
+                "id": "perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "uncertain",
+                "label": "I cannot classify this yet; show every category before resolving."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "question_id": "q1",
+          "answer": "behavioral"
+        },
+        "response": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Should DES use the category you selected, or should you review all categories?",
+            "options": [
+              {
+                "id": "confirm",
+                "label": "Use the category I selected."
+              },
+              {
+                "id": "review_all",
+                "label": "Review every category before resolving."
+              },
+              {
+                "id": "unresolved",
+                "label": "End unresolved; I do not have enough confidence to classify this."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "question_id": "q2",
+          "answer": "review_all"
+        },
+        "response": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q3",
+            "text": "Choose the category that should be used for the AXIS preview, or end unresolved.",
+            "options": [
+              {
+                "id": "choose_perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "choose_narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "choose_emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "choose_behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "choose_continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "choose_unresolved",
+                "label": "End unresolved; none of these categories is sufficiently supported."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "question_id": "q3",
+          "answer": "choose_perceptual"
+        },
+        "response": {
+          "status": "resolved",
+          "classification": "perceptual",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "short_resolved": [
+      {
+        "request": {
+          "user_id": "fixture-short-resolved-user",
+          "session_id": "fixture-short-resolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which kind of change is most needed before the next decision or action?",
+            "options": [
+              {
+                "id": "perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "uncertain",
+                "label": "I cannot classify this yet; show every category before resolving."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "question_id": "q1",
+          "answer": "uncertain"
+        },
+        "response": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q3",
+            "text": "Choose the category that should be used for the AXIS preview, or end unresolved.",
+            "options": [
+              {
+                "id": "choose_perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "choose_narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "choose_emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "choose_behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "choose_continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "choose_unresolved",
+                "label": "End unresolved; none of these categories is sufficiently supported."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "question_id": "q3",
+          "answer": "choose_continuity"
+        },
+        "response": {
+          "status": "resolved",
+          "classification": "continuity",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "explicit_unresolved": [
+      {
+        "request": {
+          "user_id": "fixture-explicit-unresolved-user",
+          "session_id": "fixture-explicit-unresolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which kind of change is most needed before the next decision or action?",
+            "options": [
+              {
+                "id": "perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "uncertain",
+                "label": "I cannot classify this yet; show every category before resolving."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "question_id": "q1",
+          "answer": "uncertain"
+        },
+        "response": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q3",
+            "text": "Choose the category that should be used for the AXIS preview, or end unresolved.",
+            "options": [
+              {
+                "id": "choose_perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "choose_narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "choose_emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "choose_behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "choose_continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "choose_unresolved",
+                "label": "End unresolved; none of these categories is sufficiently supported."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "question_id": "q3",
+          "answer": "choose_unresolved"
+        },
+        "response": {
+          "status": "unresolved",
+          "reason": "EXPLICIT_UNRESOLVED",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "invalid_option": [
+      {
+        "request": {
+          "user_id": "fixture-invalid-option-user",
+          "session_id": "fixture-invalid-option-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "interaction_id": "44444444-4444-4444-8444-444444444444",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which kind of change is most needed before the next decision or action?",
+            "options": [
+              {
+                "id": "perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "uncertain",
+                "label": "I cannot classify this yet; show every category before resolving."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "44444444-4444-4444-8444-444444444444",
+          "question_id": "q1",
+          "answer": "not-an-option"
+        },
+        "response": {
+          "error": "Invalid option",
+          "code": "INVALID_OPTION"
+        }
+      }
+    ],
+    "out_of_order": [
+      {
+        "request": {
+          "user_id": "fixture-out-of-order-user",
+          "session_id": "fixture-out-of-order-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "interaction_id": "55555555-5555-4555-8555-555555555555",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which kind of change is most needed before the next decision or action?",
+            "options": [
+              {
+                "id": "perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "uncertain",
+                "label": "I cannot classify this yet; show every category before resolving."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "55555555-5555-4555-8555-555555555555",
+          "question_id": "q2",
+          "answer": "confirm"
+        },
+        "response": {
+          "error": "Question out of order",
+          "code": "OUT_OF_ORDER"
+        }
+      }
+    ],
+    "interaction_closed": [
+      {
+        "request": {
+          "user_id": "fixture-interaction-closed-user",
+          "session_id": "fixture-interaction-closed-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which kind of change is most needed before the next decision or action?",
+            "options": [
+              {
+                "id": "perceptual",
+                "label": "Clarify facts, distinctions, or what is being observed."
+              },
+              {
+                "id": "narrative",
+                "label": "Reframe the story, interpretation, or meaning."
+              },
+              {
+                "id": "emotional",
+                "label": "Address emotion, pressure, or felt safety before deciding."
+              },
+              {
+                "id": "behavioral",
+                "label": "Turn an understood decision into a concrete action."
+              },
+              {
+                "id": "continuity",
+                "label": "Restore context, commitment, or follow-through across time."
+              },
+              {
+                "id": "uncertain",
+                "label": "I cannot classify this yet; show every category before resolving."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "question_id": "q1",
+          "answer": "behavioral"
+        },
+        "response": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Should DES use the category you selected, or should you review all categories?",
+            "options": [
+              {
+                "id": "confirm",
+                "label": "Use the category I selected."
+              },
+              {
+                "id": "review_all",
+                "label": "Review every category before resolving."
+              },
+              {
+                "id": "unresolved",
+                "label": "End unresolved; I do not have enough confidence to classify this."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "question_id": "q2",
+          "answer": "confirm"
+        },
+        "response": {
+          "status": "resolved",
+          "classification": "behavioral",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "tri_operator_classification",
+            "version": "1.0.0"
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "question_id": "q2",
+          "answer": "confirm"
+        },
+        "response": {
+          "error": "Interaction closed",
+          "code": "INTERACTION_CLOSED"
+        }
+      }
+    ],
+    "interaction_not_found": [
+      {
+        "request": {
+          "interaction_id": "00000000-0000-4000-8000-000000000000",
+          "question_id": "q1",
+          "answer": "behavioral"
+        },
+        "response": {
+          "error": "Interaction not found",
+          "code": "INTERACTION_NOT_FOUND"
+        }
+      }
+    ],
+    "default_empty": [
+      {
+        "request": {
+          "user_id": "fixture-default-empty-user",
+          "session_id": "fixture-default-empty-session",
+          "trigger_type": "operator_initiated"
+        },
+        "response": {
+          "error": "Question set unavailable",
+          "code": "QUESTION_SET_UNAVAILABLE"
+        }
+      }
+    ]
+  },
+  "contract_derived": {
+    "result_validation_failed": {
+      "error": "Result validation failed",
+      "code": "RESULT_VALIDATION_FAILED"
+    },
+    "no_matching_rule": {
+      "status": "unresolved",
+      "reason": "NO_MATCHING_RULE",
+      "done": true,
+      "contract_version": "1.0.0",
+      "question_set": {
+        "id": "tri_operator_classification",
+        "version": "1.0.0"
+      }
+    }
+  }
+}
