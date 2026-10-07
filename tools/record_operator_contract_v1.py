@@ -8,6 +8,8 @@ shape-valid UUIDv4 values before serialization.
 """
 
 import hashlib
+import http.client
+import ipaddress
 import json
 import os
 import platform
@@ -17,8 +19,7 @@ import sys
 import time
 from copy import deepcopy
 from pathlib import Path
-from urllib.error import URLError
-from urllib.request import Request, urlopen
+from urllib.parse import urlsplit
 
 import fastapi
 import uvicorn
@@ -63,16 +64,36 @@ def _free_port() -> int:
         return probe.getsockname()[1]
 
 
-def _post(base: str, path: str, body: dict) -> dict:
-    request = Request(
-        base + path,
-        data=json.dumps(body, separators=(",", ":")).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
-    )
-    with urlopen(request, timeout=2) as response:
-        if response.status != 200:
-            raise RuntimeError(f"unexpected HTTP status {response.status} for {path}")
-        return json.loads(response.read().decode("utf-8"))
+def _direct_json(method: str, base: str, path: str, body=None) -> tuple:
+    """Use a direct socket connection, bypassing all proxy configuration."""
+    parsed = urlsplit(base)
+    if parsed.scheme != "http" or parsed.hostname != HOST or parsed.port is None:
+        raise RuntimeError("recorder target must be an explicit IPv4 loopback URL")
+    connection = http.client.HTTPConnection(parsed.hostname, parsed.port, timeout=2)
+    payload = None
+    headers = {}
+    if body is not None:
+        payload = json.dumps(body, separators=(",", ":")).encode("utf-8")
+        headers["Content-Type"] = "application/json"
+    try:
+        connection.connect()
+        peer = connection.sock.getpeername()[0]
+        if not ipaddress.ip_address(peer).is_loopback:
+            raise RuntimeError(f"recorder connected to a non-loopback peer: {peer}")
+        connection.request(method, path, body=payload, headers=headers)
+        response = connection.getresponse()
+        status = response.status
+        result = json.loads(response.read().decode("utf-8"))
+        return status, result
+    finally:
+        connection.close()
+
+
+def _post(base: str, path: str, body: dict) -> tuple:
+    status, response = _direct_json("POST", base, path, body)
+    if status != 200:
+        raise RuntimeError(f"unexpected HTTP status {status} for {path}")
+    return status, response
 
 
 def _wait_ready(process, base: str) -> None:
@@ -82,12 +103,13 @@ def _wait_ready(process, base: str) -> None:
             stdout, stderr = process.communicate()
             raise RuntimeError(f"DES launcher exited early: {stdout} {stderr}")
         try:
-            with urlopen(base + "/health", timeout=1) as response:
-                health = json.loads(response.read().decode("utf-8"))
+            status, health = _direct_json("GET", base, "/health")
+            if status != 200:
+                raise RuntimeError(f"unexpected health HTTP status: {status}")
             if health != {"ok": True, "service": "DES"}:
                 raise RuntimeError(f"unexpected health response: {health!r}")
             return
-        except (OSError, URLError):
+        except OSError:
             if time.monotonic() >= deadline:
                 raise RuntimeError("DES launcher did not become ready on loopback")
             time.sleep(0.05)
@@ -126,7 +148,8 @@ def _stop(process) -> None:
 
 
 def _exchange(base: str, path: str, body: dict) -> dict:
-    return {"request": deepcopy(body), "response": _post(base, path, body)}
+    status, response = _post(base, path, body)
+    return {"request": deepcopy(body), "status": status, "response": response}
 
 
 def _start(base: str, scenario: str) -> dict:
@@ -222,9 +245,31 @@ def _normalize(recorded: dict) -> dict:
     return normalized
 
 
+def _assert_runtime_tree_clean() -> None:
+    runtime_paths = (
+        "api", "core", "models", "security", "storage", "ui", "requirements.txt"
+    )
+    diff = subprocess.run(
+        ["git", "diff", "--quiet", RUNTIME_COMMIT, "--", *runtime_paths],
+        cwd=ROOT,
+    )
+    status = subprocess.run(
+        ["git", "status", "--porcelain", "--untracked-files=all", "--", *runtime_paths],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    )
+    if diff.returncode != 0 or status.stdout.strip():
+        raise RuntimeError(
+            "refusing to record because server code differs from des_runtime_commit"
+        )
+
+
 def render_fixture(environ=None) -> str:
     source_env = os.environ if environ is None else environ
     _assert_axis_unset(source_env)
+    _assert_runtime_tree_clean()
     wire = _normalize(_record_active())
     wire["default_empty"] = _record_default_empty()
     canonical_wire = json.dumps(
@@ -235,6 +280,10 @@ def render_fixture(environ=None) -> str:
         "source": "recorded DES loopback plus labeled contract-derived cases",
         "question_set": QUESTION_SET,
         "des_runtime_commit": RUNTIME_COMMIT,
+        "des_runtime_commit_role": (
+            "server code under test; recorder, fixture, tests, and docs were added later"
+        ),
+        "server_tree_clean_against_runtime_commit": True,
         "recording_date": RECORDING_DATE,
         "runtime": {
             "python": platform.python_version(),
@@ -249,6 +298,12 @@ def render_fixture(environ=None) -> str:
             "ephemeral loopback port omitted",
             "no local filesystem path recorded",
         ],
+        "normalization_version": "1",
+        "canonicalization": "UTF-8 JSON, sorted keys, no insignificant whitespace",
+        "hash_scope": (
+            "normalized request bodies, HTTP status codes, and response bodies; "
+            "provenance fields are excluded"
+        ),
         "normalized_wire_sha256": hashlib.sha256(canonical_wire).hexdigest(),
         "recorded_wire": wire,
         "contract_derived": {

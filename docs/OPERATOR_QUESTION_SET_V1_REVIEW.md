@@ -31,6 +31,15 @@ No comparable checked-in mapping was found for `continuity`. The operator must
 either approve the draft labels as policy or replace them with authoritative
 wording before activation.
 
+The draft is intentionally balanced at the path level: each of the five class
+outcomes has 7 complete paths, and 11 paths end explicitly unresolved. A test
+runs all 46 paths through the real operator handler and compares every terminal
+result with the table below.
+
+The continuity choice is therefore explicit: approve its draft label and 7
+outcomes as operator judgment, or change those outcomes to unresolved until an
+authoritative AXIS definition exists.
+
 ## Questions and option wording
 
 ### q1

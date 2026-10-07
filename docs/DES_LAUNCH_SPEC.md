@@ -50,6 +50,10 @@ The launcher fixes the host to `127.0.0.1`. There is no environment variable or
 command-line option for `0.0.0.0`, a LAN address, or IPv6. The port must contain
 ASCII digits and be from 1024 through 65535.
 
+This non-exposure guarantee applies only when `ui/run_des.py` is used. Starting
+Uvicorn directly can choose a different bind address and is outside this launch
+specification. The controlled trial must use the checked-in launcher only.
+
 Check the local health endpoint from the same machine:
 
 ```text
@@ -81,6 +85,13 @@ Random interaction ids are replaced by documented valid UUIDv4 values; response
 headers, the ephemeral port, and local paths are omitted. The drift test runs
 the recorder twice and requires byte-identical normalized output before
 comparing its wire content with the committed fixture.
+
+The recorder bypasses environment and system proxy settings by opening a direct
+HTTP connection and asserts that the connected peer address is loopback. It
+also refuses to record if server-code paths differ from the fixture's named
+runtime commit. The later recorder commit changes only tooling, fixtures,
+tests, and documentation; `des_runtime_commit` names the server code actually
+exercised, not the commit that first added the recorder.
 
 ## Security Boundary
 

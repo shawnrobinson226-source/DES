@@ -1,6 +1,10 @@
-"""Production-content checks without registration or activation side effects."""
+"""Candidate-content checks without persistent registration side effects."""
 
+from collections import Counter
+
+import storage.repository as repository
 from core.axis.bridge import CLASSIFICATION_VALUES
+from core.operator_flow import answer_operator_interaction, start_operator_interaction
 from core.question_sets.operator_v1 import (
     CLASS_CHOICES,
     OPERATOR_QUESTION_SET_V1,
@@ -78,3 +82,44 @@ def test_content_contains_no_legacy_pricing_vocabulary():
     rendered = repr(OPERATOR_QUESTION_SET_V1).lower()
     for term in ("friction_type", "output_type", "repeat_pricing_visit", "pricing"):
         assert term not in rendered
+
+
+def test_all_46_authored_paths_match_real_handler_behavior():
+    entries = dict(OPERATOR_QUESTION_SETS._entries)
+    active_key = OPERATOR_QUESTION_SETS._active_key
+    observed = Counter()
+    try:
+        OPERATOR_QUESTION_SETS.register(OPERATOR_QUESTION_SET_V1)
+        OPERATOR_QUESTION_SETS.activate(QUESTION_SET_ID, QUESTION_SET_VERSION)
+
+        for index, rule in enumerate(OPERATOR_QUESTION_SET_V1.rules):
+            repository._INTERACTIONS.clear()
+            start = start_operator_interaction(f"user-{index}", f"session-{index}")
+            interaction_id = start["interaction_id"]
+            response = None
+            for question_id, option_id in rule.path:
+                response = answer_operator_interaction(
+                    repository.get_interaction(interaction_id), question_id, option_id)
+
+            expected = getattr(rule.outcome, "value", rule.outcome)
+            if expected == "UNRESOLVED":
+                assert response["status"] == "unresolved"
+                assert response["reason"] == "EXPLICIT_UNRESOLVED"
+                observed["UNRESOLVED"] += 1
+            else:
+                assert response["status"] == "resolved"
+                assert response["classification"] == expected
+                observed[expected] += 1
+
+        assert observed == Counter({
+            "perceptual": 7,
+            "narrative": 7,
+            "emotional": 7,
+            "behavioral": 7,
+            "continuity": 7,
+            "UNRESOLVED": 11,
+        })
+    finally:
+        repository._INTERACTIONS.clear()
+        OPERATOR_QUESTION_SETS._entries = entries
+        OPERATOR_QUESTION_SETS._active_key = active_key

@@ -47,8 +47,15 @@ def test_recorded_fixture_provenance_and_scenarios_are_complete():
     assert fixture["question_set"] == {
         "id": "tri_operator_classification", "version": "1.0.0"}
     assert fixture["des_runtime_commit"] == RUNTIME_COMMIT
+    assert fixture["server_tree_clean_against_runtime_commit"] is True
     assert set(fixture["runtime"]) == {"python", "fastapi", "uvicorn"}
     assert fixture["recorder"] == "DES tools/record_operator_contract_v1.py"
+    assert fixture["normalization_version"] == "1"
+    assert fixture["canonicalization"] == (
+        "UTF-8 JSON, sorted keys, no insignificant whitespace")
+    assert fixture["hash_scope"] == (
+        "normalized request bodies, HTTP status codes, and response bodies; "
+        "provenance fields are excluded")
 
     wire = fixture["recorded_wire"]
     assert set(wire) == {
@@ -61,6 +68,11 @@ def test_recorded_fixture_provenance_and_scenarios_are_complete():
         "interaction_not_found",
         "default_empty",
     }
+    assert all(
+        step["status"] == 200
+        for scenario in wire.values()
+        for step in scenario
+    )
     assert wire["full_length_resolved"][-1]["response"]["classification"] == "perceptual"
     assert wire["short_resolved"][1]["response"]["question"]["id"] == "q3"
     assert wire["short_resolved"][-1]["response"]["classification"] == "continuity"

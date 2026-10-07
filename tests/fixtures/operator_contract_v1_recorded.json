@@ -6,6 +6,8 @@
     "version": "1.0.0"
   },
   "des_runtime_commit": "d67ad44f9b5c87583cd7e4644f63b297951b1b5d",
+  "des_runtime_commit_role": "server code under test; recorder, fixture, tests, and docs were added later",
+  "server_tree_clean_against_runtime_commit": true,
   "recording_date": "2026-10-06",
   "runtime": {
     "python": "3.14.7",
@@ -20,7 +22,10 @@
     "ephemeral loopback port omitted",
     "no local filesystem path recorded"
   ],
-  "normalized_wire_sha256": "bbfeca38f76421b9f870906c76b820b7b17108e524fca32005b435d55e718ee6",
+  "normalization_version": "1",
+  "canonicalization": "UTF-8 JSON, sorted keys, no insignificant whitespace",
+  "hash_scope": "normalized request bodies, HTTP status codes, and response bodies; provenance fields are excluded",
+  "normalized_wire_sha256": "0b62592744345d13c4b82e7b6d3637add474e3cea97390d076bdfb4c23ac8fd9",
   "recorded_wire": {
     "full_length_resolved": [
       {
@@ -29,6 +34,7 @@
           "session_id": "fixture-full-resolved-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "interaction_id": "11111111-1111-4111-8111-111111111111",
           "done": false,
@@ -75,6 +81,7 @@
           "question_id": "q1",
           "answer": "behavioral"
         },
+        "status": 200,
         "response": {
           "interaction_id": "11111111-1111-4111-8111-111111111111",
           "done": false,
@@ -109,6 +116,7 @@
           "question_id": "q2",
           "answer": "review_all"
         },
+        "status": 200,
         "response": {
           "interaction_id": "11111111-1111-4111-8111-111111111111",
           "done": false,
@@ -155,6 +163,7 @@
           "question_id": "q3",
           "answer": "choose_perceptual"
         },
+        "status": 200,
         "response": {
           "status": "resolved",
           "classification": "perceptual",
@@ -174,6 +183,7 @@
           "session_id": "fixture-short-resolved-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "interaction_id": "22222222-2222-4222-8222-222222222222",
           "done": false,
@@ -220,6 +230,7 @@
           "question_id": "q1",
           "answer": "uncertain"
         },
+        "status": 200,
         "response": {
           "interaction_id": "22222222-2222-4222-8222-222222222222",
           "done": false,
@@ -266,6 +277,7 @@
           "question_id": "q3",
           "answer": "choose_continuity"
         },
+        "status": 200,
         "response": {
           "status": "resolved",
           "classification": "continuity",
@@ -285,6 +297,7 @@
           "session_id": "fixture-explicit-unresolved-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "interaction_id": "33333333-3333-4333-8333-333333333333",
           "done": false,
@@ -331,6 +344,7 @@
           "question_id": "q1",
           "answer": "uncertain"
         },
+        "status": 200,
         "response": {
           "interaction_id": "33333333-3333-4333-8333-333333333333",
           "done": false,
@@ -377,6 +391,7 @@
           "question_id": "q3",
           "answer": "choose_unresolved"
         },
+        "status": 200,
         "response": {
           "status": "unresolved",
           "reason": "EXPLICIT_UNRESOLVED",
@@ -396,6 +411,7 @@
           "session_id": "fixture-invalid-option-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "interaction_id": "44444444-4444-4444-8444-444444444444",
           "done": false,
@@ -442,6 +458,7 @@
           "question_id": "q1",
           "answer": "not-an-option"
         },
+        "status": 200,
         "response": {
           "error": "Invalid option",
           "code": "INVALID_OPTION"
@@ -455,6 +472,7 @@
           "session_id": "fixture-out-of-order-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "interaction_id": "55555555-5555-4555-8555-555555555555",
           "done": false,
@@ -501,6 +519,7 @@
           "question_id": "q2",
           "answer": "confirm"
         },
+        "status": 200,
         "response": {
           "error": "Question out of order",
           "code": "OUT_OF_ORDER"
@@ -514,6 +533,7 @@
           "session_id": "fixture-interaction-closed-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "interaction_id": "66666666-6666-4666-8666-666666666666",
           "done": false,
@@ -560,6 +580,7 @@
           "question_id": "q1",
           "answer": "behavioral"
         },
+        "status": 200,
         "response": {
           "interaction_id": "66666666-6666-4666-8666-666666666666",
           "done": false,
@@ -594,6 +615,7 @@
           "question_id": "q2",
           "answer": "confirm"
         },
+        "status": 200,
         "response": {
           "status": "resolved",
           "classification": "behavioral",
@@ -611,6 +633,7 @@
           "question_id": "q2",
           "answer": "confirm"
         },
+        "status": 200,
         "response": {
           "error": "Interaction closed",
           "code": "INTERACTION_CLOSED"
@@ -624,6 +647,7 @@
           "question_id": "q1",
           "answer": "behavioral"
         },
+        "status": 200,
         "response": {
           "error": "Interaction not found",
           "code": "INTERACTION_NOT_FOUND"
@@ -637,6 +661,7 @@
           "session_id": "fixture-default-empty-session",
           "trigger_type": "operator_initiated"
         },
+        "status": 200,
         "response": {
           "error": "Question set unavailable",
           "code": "QUESTION_SET_UNAVAILABLE"
