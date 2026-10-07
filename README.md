@@ -31,9 +31,10 @@ Operator terminal outcomes:
 - unresolved with an explicit reason
 
 See [DES Operator Contract V1](docs/DES_OPERATOR_CONTRACT_V1.md) for the
-`operator_initiated` response and storage contract. The production operator
-question-set registry is currently empty; this repository contains no bootstrap
-that registers or activates production content.
+`operator_initiated` response and storage contract. Production content is
+available but remains inactive unless an exact version is selected through the
+fail-closed startup bootstrap. See the
+[DES Local Launch Specification](docs/DES_LAUNCH_SPEC.md).
 
 System principles:
 - deterministic behavior
