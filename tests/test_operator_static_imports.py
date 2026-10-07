@@ -16,6 +16,7 @@ OPERATOR_MODULES = [
     "core/contracts.py",
     "core/operator_resolver.py",
     "core/question_sets/__init__.py",
+    "core/question_sets/bootstrap.py",
     "core/question_sets/definitions.py",
     "core/question_sets/errors.py",
     "core/question_sets/operator_v1.py",

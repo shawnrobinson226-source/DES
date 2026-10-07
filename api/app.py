@@ -3,6 +3,10 @@
 from fastapi import FastAPI
 from api.trigger import trigger_check
 from api.interaction import start_interaction, answer_interaction
+from core.question_sets.bootstrap import bootstrap_operator_question_sets
+
+
+bootstrap_operator_question_sets()
 
 app = FastAPI(title="DES V1")
 
