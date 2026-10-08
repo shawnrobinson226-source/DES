@@ -45,7 +45,7 @@ def test_recorded_fixture_provenance_and_scenarios_are_complete():
     fixture = json.loads(FIXTURE.read_text(encoding="utf-8"))
     assert fixture["contract_version"] == "1.0.0"
     assert fixture["question_set"] == {
-        "id": "tri_operator_classification", "version": "1.0.0"}
+        "id": "tri_operator_plumbing_scaffold", "version": "0.1.0"}
     assert fixture["des_runtime_commit"] == RUNTIME_COMMIT
     assert fixture["server_tree_clean_against_runtime_commit"] is True
     assert set(fixture["runtime"]) == {"python", "fastapi", "uvicorn"}
@@ -106,5 +106,5 @@ def test_non_wire_cases_are_explicitly_contract_derived():
         "reason": "NO_MATCHING_RULE",
         "done": True,
         "contract_version": "1.0.0",
-        "question_set": {"id": "tri_operator_classification", "version": "1.0.0"},
+        "question_set": {"id": "tri_operator_plumbing_scaffold", "version": "0.1.0"},
     }

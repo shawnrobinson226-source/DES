@@ -27,11 +27,11 @@ import uvicorn
 
 ROOT = Path(__file__).resolve().parent.parent
 HOST = "127.0.0.1"
-SELECTION = "tri_operator_classification@1.0.0"
+SELECTION = "tri_operator_plumbing_scaffold@0.1.0"
 CONTRACT_VERSION = "1.0.0"
-QUESTION_SET = {"id": "tri_operator_classification", "version": "1.0.0"}
-RUNTIME_COMMIT = "d67ad44f9b5c87583cd7e4644f63b297951b1b5d"
-RECORDING_DATE = "2026-10-06"
+QUESTION_SET = {"id": "tri_operator_plumbing_scaffold", "version": "0.1.0"}
+RUNTIME_COMMIT = "7f3eba70ede5d0fa2571a92d9b8e649679f7a8c9"
+RECORDING_DATE = "2026-10-07"
 RECORDER_IDENTITY = "DES tools/record_operator_contract_v1.py"
 FORBIDDEN_AXIS_ENV = (
     "AXIS_BASE_URL",

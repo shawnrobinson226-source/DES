@@ -2,13 +2,13 @@
   "contract_version": "1.0.0",
   "source": "recorded DES loopback plus labeled contract-derived cases",
   "question_set": {
-    "id": "tri_operator_classification",
-    "version": "1.0.0"
+    "id": "tri_operator_plumbing_scaffold",
+    "version": "0.1.0"
   },
-  "des_runtime_commit": "d67ad44f9b5c87583cd7e4644f63b297951b1b5d",
+  "des_runtime_commit": "7f3eba70ede5d0fa2571a92d9b8e649679f7a8c9",
   "des_runtime_commit_role": "server code under test; recorder, fixture, tests, and docs were added later",
   "server_tree_clean_against_runtime_commit": true,
-  "recording_date": "2026-10-06",
+  "recording_date": "2026-10-07",
   "runtime": {
     "python": "3.14.7",
     "fastapi": "0.142.2",
@@ -25,7 +25,7 @@
   "normalization_version": "1",
   "canonicalization": "UTF-8 JSON, sorted keys, no insignificant whitespace",
   "hash_scope": "normalized request bodies, HTTP status codes, and response bodies; provenance fields are excluded",
-  "normalized_wire_sha256": "0b62592744345d13c4b82e7b6d3637add474e3cea97390d076bdfb4c23ac8fd9",
+  "normalized_wire_sha256": "df1f5157c318339d10b7e0524103f031d77b8a0a07fac50e13563c00d3674c7a",
   "recorded_wire": {
     "full_length_resolved": [
       {
@@ -40,8 +40,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q1",
@@ -87,8 +87,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q2",
@@ -122,8 +122,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q3",
@@ -170,8 +170,8 @@
           "done": true,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           }
         }
       }
@@ -189,8 +189,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q1",
@@ -236,8 +236,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q3",
@@ -284,8 +284,8 @@
           "done": true,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           }
         }
       }
@@ -303,8 +303,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q1",
@@ -350,8 +350,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q3",
@@ -398,8 +398,8 @@
           "done": true,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           }
         }
       }
@@ -417,8 +417,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q1",
@@ -478,8 +478,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q1",
@@ -539,8 +539,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q1",
@@ -586,8 +586,8 @@
           "done": false,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           },
           "question": {
             "id": "q2",
@@ -622,8 +622,8 @@
           "done": true,
           "contract_version": "1.0.0",
           "question_set": {
-            "id": "tri_operator_classification",
-            "version": "1.0.0"
+            "id": "tri_operator_plumbing_scaffold",
+            "version": "0.1.0"
           }
         }
       },
@@ -680,8 +680,8 @@
       "done": true,
       "contract_version": "1.0.0",
       "question_set": {
-        "id": "tri_operator_classification",
-        "version": "1.0.0"
+        "id": "tri_operator_plumbing_scaffold",
+        "version": "0.1.0"
       }
     }
   }
