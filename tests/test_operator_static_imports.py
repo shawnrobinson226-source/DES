@@ -19,7 +19,7 @@ OPERATOR_MODULES = [
     "core/question_sets/bootstrap.py",
     "core/question_sets/definitions.py",
     "core/question_sets/errors.py",
-    "core/question_sets/operator_v1.py",
+    "core/question_sets/operator_scaffold_v1.py",
     "core/question_sets/registry.py",
     "core/question_sets/sentinels.py",
     "core/question_sets/validation.py",

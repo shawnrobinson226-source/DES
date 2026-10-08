@@ -83,10 +83,11 @@ Q3 options are `clarity`, `fit`, `trust`, and `cost`.
 
 The operator flow uses the active entry in `OPERATOR_QUESTION_SETS`, pins its
 `id` and `version`, and accepts exact option ids for the expected next question.
-The production registry starts empty and no bootstrap exists in this repository,
-so the route returns an HTTP 200 error body with code
-`QUESTION_SET_UNAVAILABLE` until external bootstrap code registers and activates
-production content. The complete contract is in [DES Operator Contract V1](DES_OPERATOR_CONTRACT_V1.md).
+The registry starts empty. The startup bootstrap can activate only the explicit
+non-production plumbing scaffold; no production question set exists. Without
+that exact controlled-trial selection, the route returns an HTTP 200 error body
+with code `QUESTION_SET_UNAVAILABLE`. The complete contract is in
+[DES Operator Contract V1](DES_OPERATOR_CONTRACT_V1.md).
 
 ## Legacy Pricing Friction Types
 
@@ -171,13 +172,15 @@ FastAPI exposes:
 `/interaction/start` accepts `user_id`, `session_id`, and `trigger_type` equal to
 `repeat_pricing_visit` or `operator_initiated`. The pricing flow creates an
 in-memory interaction and returns its fixed Q1. The operator flow requires an
-active production question set; none is bootstrapped in this repository.
+active question set; only the explicit non-production scaffold is available
+through the bootstrap, and nothing activates by default.
 
 `/interaction/answer` accepts `interaction_id`, `question_id`, and `answer`. It
 dispatches by the stored interaction's `trigger_type`. Pricing advances the fixed
 flow and produces legacy pricing output. Operator handling follows the pinned
 question set and returns the next question, a resolved classification, or an
-unresolved reason.
+unresolved reason. The available scaffold exercises these shapes but is not
+production classification policy.
 
 ## Security Rules
 

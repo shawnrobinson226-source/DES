@@ -26,9 +26,10 @@ stored interaction's `trigger_type`. The pricing flow remains separate.
 
 ## Availability And Version Pinning
 
-`OPERATOR_QUESTION_SETS` is created empty. Nothing in this repository registers
-or activates production question-set content. Until an external bootstrap does
-both, an operator start returns:
+`OPERATOR_QUESTION_SETS` is created empty. The repository contains one explicit
+non-production plumbing scaffold, but nothing activates by default and no
+production question-set content exists. Until the exact scaffold selection is
+chosen for a controlled trial, an operator start returns:
 
 ```json
 {

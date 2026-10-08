@@ -16,7 +16,7 @@ from ui.run_des import DEFAULT_PORT, HOST, configured_port
 
 
 ROOT = Path(__file__).resolve().parent.parent
-SELECTION = "tri_operator_classification@1.0.0"
+SELECTION = "tri_operator_plumbing_scaffold@0.1.0"
 
 
 def test_runtime_requirements_are_exactly_pinned():
@@ -138,7 +138,7 @@ def test_checked_in_launcher_binds_loopback_and_serves_operator_contract():
         assert start["done"] is False
         assert start["contract_version"] == "1.0.0"
         assert start["question_set"] == {
-            "id": "tri_operator_classification", "version": "1.0.0"}
+            "id": "tri_operator_plumbing_scaffold", "version": "0.1.0"}
         assert start["question"]["id"] == "q1"
     finally:
         _stop(process)

@@ -1,9 +1,9 @@
-# DES — Explicit production question-set bootstrap
+# DES — Explicit question-set bootstrap
 
-"""Register and activate operator content only after an exact startup choice.
+"""Register and activate available operator content after an exact choice.
 
 The default is deliberately inert: an absent or empty environment value leaves
-the production registry empty, so operator starts fail closed with
+the registry empty, so operator starts fail closed with
 QUESTION_SET_UNAVAILABLE. A non-empty value must identify one allowlisted set
 exactly as ``<id>@<version>``; malformed or unknown values stop application
 startup instead of selecting a fallback.
@@ -11,15 +11,15 @@ startup instead of selecting a fallback.
 
 import os
 
-from core.question_sets.operator_v1 import OPERATOR_QUESTION_SET_V1
+from core.question_sets.operator_scaffold_v1 import OPERATOR_PLUMBING_SCAFFOLD_V1
 from core.question_sets.registry import OPERATOR_QUESTION_SETS, QuestionSetRegistry
 
 
 ACTIVATION_ENV = "DES_OPERATOR_QUESTION_SET"
 
 AVAILABLE_QUESTION_SETS = {
-    f"{OPERATOR_QUESTION_SET_V1.id}@{OPERATOR_QUESTION_SET_V1.version}":
-        OPERATOR_QUESTION_SET_V1,
+    f"{OPERATOR_PLUMBING_SCAFFOLD_V1.id}@{OPERATOR_PLUMBING_SCAFFOLD_V1.version}":
+        OPERATOR_PLUMBING_SCAFFOLD_V1,
 }
 
 

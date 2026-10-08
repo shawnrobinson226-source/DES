@@ -1,22 +1,24 @@
-# DES — Production operator question set, version 1.0.0
+# DES — Non-production operator plumbing scaffold, version 0.1.0
 
-"""Operator-authored classification questions and exact path rules.
+"""Mechanics-only questions and exact path rules for integration trials.
 
 Importing this module constructs validated immutable content but does not
-register or activate it. Production activation is a separate, explicit
-startup decision. There is no inferred or default classification: every
-complete path has an authored rule, including explicit unresolved exits.
+register or activate it. This set makes no semantic or production
+classification claim: the operator selects labels and the rules echo that
+selection only to exercise routing, provenance, terminal outcomes, and caller
+failures. There is no inferred or default classification, and every complete
+path has an explicit rule, including unresolved exits.
 """
 
 from core.axis.bridge import CLASSIFICATION_VALUES
 from core.question_sets.definitions import END, UNRESOLVED, Option, Question, QuestionSet, Rule
 
 
-QUESTION_SET_ID = "tri_operator_classification"
-QUESTION_SET_VERSION = "1.0.0"
+QUESTION_SET_ID = "tri_operator_plumbing_scaffold"
+QUESTION_SET_VERSION = "0.1.0"
 
-# The order is presentation policy. The ids are AXIS's exact class names;
-# labels explain the choice without asking DES to infer from free text.
+# The ids exercise AXIS's exact allowlist mechanically. These labels are draft
+# test language, not AXIS definitions and not production classification policy.
 CLASS_CHOICES = (
     ("perceptual", "Clarify facts, distinctions, or what is being observed."),
     ("narrative", "Reframe the story, interpretation, or meaning."),
@@ -121,7 +123,7 @@ def _rules() -> tuple:
     return tuple(rules)
 
 
-OPERATOR_QUESTION_SET_V1 = QuestionSet(
+OPERATOR_PLUMBING_SCAFFOLD_V1 = QuestionSet(
     id=QUESTION_SET_ID,
     version=QUESTION_SET_VERSION,
     questions=_questions(),
@@ -131,7 +133,7 @@ OPERATOR_QUESTION_SET_V1 = QuestionSet(
 
 __all__ = [
     "CLASS_CHOICES",
-    "OPERATOR_QUESTION_SET_V1",
+    "OPERATOR_PLUMBING_SCAFFOLD_V1",
     "QUESTION_SET_ID",
     "QUESTION_SET_VERSION",
 ]

@@ -13,19 +13,19 @@ from core.question_sets.bootstrap import (
     OperatorBootstrapError,
     bootstrap_operator_question_sets,
 )
-from core.question_sets.operator_v1 import OPERATOR_QUESTION_SET_V1
+from core.question_sets.operator_scaffold_v1 import OPERATOR_PLUMBING_SCAFFOLD_V1
 from core.question_sets.registry import QuestionSetRegistry
 from tests.operator_fixtures import single_question_set
 
 
 SELECTION = (
-    f"{OPERATOR_QUESTION_SET_V1.id}@{OPERATOR_QUESTION_SET_V1.version}"
+    f"{OPERATOR_PLUMBING_SCAFFOLD_V1.id}@{OPERATOR_PLUMBING_SCAFFOLD_V1.version}"
 )
 ROOT = Path(__file__).resolve().parent.parent
 
 
 def test_available_set_has_one_explicit_versioned_name():
-    assert AVAILABLE_QUESTION_SETS == {SELECTION: OPERATOR_QUESTION_SET_V1}
+    assert AVAILABLE_QUESTION_SETS == {SELECTION: OPERATOR_PLUMBING_SCAFFOLD_V1}
 
 
 @pytest.mark.parametrize("environ", [{}, {ACTIVATION_ENV: ""}])
@@ -36,27 +36,29 @@ def test_default_and_empty_environment_leave_registry_empty(environ):
     assert registry.get_active() is None
 
 
-def test_exact_selection_registers_and_activates_authored_content():
+def test_exact_selection_registers_and_activates_scaffold_content():
     registry = QuestionSetRegistry()
     result = bootstrap_operator_question_sets(
         registry=registry, environ={ACTIVATION_ENV: SELECTION})
-    assert result == (OPERATOR_QUESTION_SET_V1.id, OPERATOR_QUESTION_SET_V1.version)
+    assert result == (OPERATOR_PLUMBING_SCAFFOLD_V1.id,
+                      OPERATOR_PLUMBING_SCAFFOLD_V1.version)
     assert registry.keys() == (result,)
-    assert registry.get_active() is OPERATOR_QUESTION_SET_V1
+    assert registry.get_active() is OPERATOR_PLUMBING_SCAFFOLD_V1
 
 
 def test_explicit_argument_overrides_environment_mapping():
     registry = QuestionSetRegistry()
     result = bootstrap_operator_question_sets(
         SELECTION, registry=registry, environ={ACTIVATION_ENV: "unknown@9"})
-    assert result == (OPERATOR_QUESTION_SET_V1.id, OPERATOR_QUESTION_SET_V1.version)
-    assert registry.get_active() is OPERATOR_QUESTION_SET_V1
+    assert result == (OPERATOR_PLUMBING_SCAFFOLD_V1.id,
+                      OPERATOR_PLUMBING_SCAFFOLD_V1.version)
+    assert registry.get_active() is OPERATOR_PLUMBING_SCAFFOLD_V1
 
 
 @pytest.mark.parametrize("selection", [
     "unknown@1.0.0",
-    "tri_operator_classification",
-    "tri_operator_classification@latest",
+    "tri_operator_plumbing_scaffold",
+    "tri_operator_plumbing_scaffold@latest",
     f" {SELECTION}",
     f"{SELECTION} ",
     1,
@@ -74,15 +76,15 @@ def test_bootstrap_is_idempotent_only_for_the_same_authored_object():
     registry = QuestionSetRegistry()
     assert bootstrap_operator_question_sets(SELECTION, registry=registry)
     assert bootstrap_operator_question_sets(SELECTION, registry=registry)
-    assert registry.keys() == ((OPERATOR_QUESTION_SET_V1.id,
-                                OPERATOR_QUESTION_SET_V1.version),)
+    assert registry.keys() == ((OPERATOR_PLUMBING_SCAFFOLD_V1.id,
+                                OPERATOR_PLUMBING_SCAFFOLD_V1.version),)
 
 
 def test_conflicting_object_with_same_identity_fails_closed():
     registry = QuestionSetRegistry()
     conflicting = single_question_set(
-        set_id=OPERATOR_QUESTION_SET_V1.id,
-        version=OPERATOR_QUESTION_SET_V1.version,
+        set_id=OPERATOR_PLUMBING_SCAFFOLD_V1.id,
+        version=OPERATOR_PLUMBING_SCAFFOLD_V1.version,
     )
     registry.register(conflicting)
     with pytest.raises(OperatorBootstrapError, match="different question set"):
@@ -117,7 +119,7 @@ def test_application_import_keeps_default_registry_empty():
 def test_application_import_applies_exact_environment_activation():
     result = launch_import(SELECTION)
     assert result.returncode == 0, result.stderr
-    assert "tri_operator_classification" in result.stdout
+    assert "tri_operator_plumbing_scaffold" in result.stdout
 
 
 def test_application_import_refuses_unknown_environment_activation():

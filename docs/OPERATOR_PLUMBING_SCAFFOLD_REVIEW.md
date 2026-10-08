@@ -1,15 +1,17 @@
-# Operator Question Set 1.0.0 — Review Gate
+# Operator Plumbing Scaffold 0.1.0 — Approval Record
 
-Status: **draft pending explicit operator approval**
+Status: **approved for scaffold use only**
 
-This document prints the exact authored content and every complete path in
-`tri_operator_classification@1.0.0`. Importing the question set remains inert,
+This document prints the exact mechanics-only content and every complete path
+in `tri_operator_plumbing_scaffold@0.1.0`. Importing the scaffold remains inert,
 and the DES registry remains empty unless the exact version is selected at
 startup.
 
-The implementation was drafted by Codex. It must not be described as
-operator-authored or production-approved until the operator has reviewed this
-document and explicitly signed off or supplied changes.
+The implementation was drafted by Codex and approved by the operator on
+2026-10-07 for plumbing and browser-trial use only. It is not production
+classification policy, makes no semantic claims, and must not be presented as
+DES deciding a real classification. The operator selects a test label and DES
+echoes it through explicit rules so the system can exercise every mechanism.
 
 ## Source audit
 
@@ -31,14 +33,14 @@ No comparable checked-in mapping was found for `continuity`. The operator must
 either approve the draft labels as policy or replace them with authoritative
 wording before activation.
 
-The draft is intentionally balanced at the path level: each of the five class
+The scaffold is intentionally balanced at the path level: each of the five class
 outcomes has 7 complete paths, and 11 paths end explicitly unresolved. A test
 runs all 46 paths through the real operator handler and compares every terminal
 result with the table below.
 
-The continuity choice is therefore explicit: approve its draft label and 7
-outcomes as operator judgment, or change those outcomes to unresolved until an
-authoritative AXIS definition exists.
+Continuity remains here only to exercise the full allowlist mechanically. Its
+label and seven outcomes remain draft test data. Production use of Continuity
+stays unresolved until AXIS supplies an authoritative definition.
 
 ## Questions and option wording
 
@@ -127,8 +129,10 @@ q1=uncertain, q3=choose_continuity -> continuity
 q1=uncertain, q3=choose_unresolved -> UNRESOLVED
 ```
 
-## Approval record
+## Approval boundary
 
-Approval is not implied by implementation, test passage, or startup selection.
-Record the operator's explicit approval or requested changes in the commit that
-promotes this draft to approved production content.
+The operator approved Option B: scaffold only. This approval permits local
+loopback fixture recording and the controlled no-AXIS browser trial. It does
+not approve these questions, labels, or paths as production classification
+content; does not approve any `next_action`; does not approve a live AXIS
+request; and does not authorize a public push.
