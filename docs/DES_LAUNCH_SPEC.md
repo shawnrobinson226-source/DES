@@ -17,8 +17,15 @@ python -m pip install -r requirements.txt
 ```
 
 `requirements.txt` pins the FastAPI version used by the verified environment
-and the ASGI server used by the launcher. Development and test dependencies are
-not described by this runtime file.
+and the ASGI server used by the launcher. Install the separate, pinned test
+dependencies when running the suite:
+
+```powershell
+python -m pip install -r requirements-test.txt
+```
+
+`httpx2` is included because the Starlette version resolved by the pinned
+FastAPI stack requires it for `TestClient`; it is not a DES runtime dependency.
 
 ## Operator Question-Set Activation
 
