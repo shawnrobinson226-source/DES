@@ -54,3 +54,15 @@ Approval permits the production content to exist and be selected explicitly in
 DES. It does not activate the set by default, authorize class-to-`next_action`
 text, configure AXIS credentials, or authorize a live AXIS request. Those gates
 remain separate.
+
+## Verification evidence
+
+The production runtime is pinned at commit
+`6d39960461a4a7960d3e9f9db36fadbc26aa352c`. The loopback recorder generated
+the scaffold and production fixtures twice with byte-identical normalized wire
+content while AXIS settings were absent. The full DES suite passed 548 tests.
+
+An isolated mutation changed `control_loss` from `perceptual` to `narrative`.
+The policy tests failed on both the exact approved mapping and the expected
+outcome counts, proving that fracture-to-class drift is detected. The mutated
+checkout was then removed.

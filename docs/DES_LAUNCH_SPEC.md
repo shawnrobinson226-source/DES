@@ -80,22 +80,26 @@ plugin boundary.
 
 ## Recorded Contract Fixture
 
-`tools/record_operator_contract_v1.py` owns the real-loopback recording used to
+`tools/record_operator_contract_v1.py` owns the real-loopback recordings used to
 detect contract drift. It refuses to run if any AXIS URL, service token, or
-operator-id environment variable is present. The committed fixture records a
+operator-id environment variable is present. The scaffold fixture records a
 full resolved path, a short path that skips q2, explicit unresolved, four
 wire-reproducible errors, and the default-empty state. `RESULT_VALIDATION_FAILED`
 and `NO_MATCHING_RULE` are retained separately and labeled contract-derived
 because the authored set cannot produce them on the wire.
+
+The separate production fixture records at least one resolved path for each of
+the four reachable AXIS classes, multiple-pattern and early unresolved exits,
+class-name rejection, standard ordering/closure/lookup errors, and the
+default-empty state. Continuity is absent by policy.
 
 Random interaction ids are replaced by documented valid UUIDv4 values; response
 headers, the ephemeral port, and local paths are omitted. The drift test runs
 the recorder twice and requires byte-identical normalized output before
 comparing its wire content with the committed fixture.
 
-The committed recording is scaffold evidence, not production-classification
-evidence. Re-recording against the production selector remains a separate gate
-before production activation.
+Both fixtures name the exact committed runtime they exercised. Neither fixture
+activates AXIS or authorizes TRI promotion.
 
 The recorder bypasses environment and system proxy settings by opening a direct
 HTTP connection and asserts that the connected peer address is loopback. It

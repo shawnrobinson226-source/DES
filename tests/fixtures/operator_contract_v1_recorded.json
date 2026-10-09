@@ -5,10 +5,10 @@
     "id": "tri_operator_plumbing_scaffold",
     "version": "0.1.0"
   },
-  "des_runtime_commit": "7f3eba70ede5d0fa2571a92d9b8e649679f7a8c9",
+  "des_runtime_commit": "6d39960461a4a7960d3e9f9db36fadbc26aa352c",
   "des_runtime_commit_role": "server code under test; recorder, fixture, tests, and docs were added later",
   "server_tree_clean_against_runtime_commit": true,
-  "recording_date": "2026-10-07",
+  "recording_date": "2026-10-09",
   "runtime": {
     "python": "3.14.7",
     "fastapi": "0.142.2",

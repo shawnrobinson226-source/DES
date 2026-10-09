@@ -1,0 +1,1124 @@
+{
+  "contract_version": "1.0.0",
+  "source": "recorded DES production-policy loopback",
+  "question_set": {
+    "id": "axis_fracture_classification",
+    "version": "1.0.0"
+  },
+  "des_runtime_commit": "6d39960461a4a7960d3e9f9db36fadbc26aa352c",
+  "des_runtime_commit_role": "server code under test; recorder, fixture, tests, and docs were added later",
+  "server_tree_clean_against_runtime_commit": true,
+  "recording_date": "2026-10-09",
+  "runtime": {
+    "python": "3.14.7",
+    "fastapi": "0.142.2",
+    "uvicorn": "0.54.0"
+  },
+  "recorder": "DES tools/record_operator_contract_v1.py",
+  "normalizations": [
+    "synthetic fixture user_id and session_id values",
+    "interaction_id replaced per scenario with a fixed valid UUIDv4",
+    "HTTP Date and Server headers omitted",
+    "ephemeral loopback port omitted",
+    "no local filesystem path recorded"
+  ],
+  "normalization_version": "1",
+  "canonicalization": "UTF-8 JSON, sorted keys, no insignificant whitespace",
+  "hash_scope": "normalized request bodies, HTTP status codes, and response bodies; provenance fields are excluded",
+  "normalized_wire_sha256": "e136621b7be2bb994a06ed95bf3c3615cf6cab9d3c16d01353c0ffe64261feb1",
+  "recorded_wire": {
+    "behavioral_resolved": [
+      {
+        "request": {
+          "user_id": "fixture-behavioral-resolved-user",
+          "session_id": "fixture-behavioral-resolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "question_id": "q1",
+          "answer": "avoidance_loop"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Is another distinct fracture pattern also present?",
+            "options": [
+              {
+                "id": "no_other_pattern",
+                "label": "No."
+              },
+              {
+                "id": "another_pattern_present",
+                "label": "Yes."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "11111111-1111-4111-8111-111111111111",
+          "question_id": "q2",
+          "answer": "no_other_pattern"
+        },
+        "status": 200,
+        "response": {
+          "status": "resolved",
+          "classification": "behavioral",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "emotional_resolved": [
+      {
+        "request": {
+          "user_id": "fixture-emotional-resolved-user",
+          "session_id": "fixture-emotional-resolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "question_id": "q1",
+          "answer": "shame_spike"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Is another distinct fracture pattern also present?",
+            "options": [
+              {
+                "id": "no_other_pattern",
+                "label": "No."
+              },
+              {
+                "id": "another_pattern_present",
+                "label": "Yes."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "22222222-2222-4222-8222-222222222222",
+          "question_id": "q2",
+          "answer": "no_other_pattern"
+        },
+        "status": 200,
+        "response": {
+          "status": "resolved",
+          "classification": "emotional",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "narrative_resolved": [
+      {
+        "request": {
+          "user_id": "fixture-narrative-resolved-user",
+          "session_id": "fixture-narrative-resolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "question_id": "q1",
+          "answer": "status_threat"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Is another distinct fracture pattern also present?",
+            "options": [
+              {
+                "id": "no_other_pattern",
+                "label": "No."
+              },
+              {
+                "id": "another_pattern_present",
+                "label": "Yes."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "33333333-3333-4333-8333-333333333333",
+          "question_id": "q2",
+          "answer": "no_other_pattern"
+        },
+        "status": 200,
+        "response": {
+          "status": "resolved",
+          "classification": "narrative",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "perceptual_resolved": [
+      {
+        "request": {
+          "user_id": "fixture-perceptual-resolved-user",
+          "session_id": "fixture-perceptual-resolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "44444444-4444-4444-8444-444444444444",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "44444444-4444-4444-8444-444444444444",
+          "question_id": "q1",
+          "answer": "control_loss"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "44444444-4444-4444-8444-444444444444",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Is another distinct fracture pattern also present?",
+            "options": [
+              {
+                "id": "no_other_pattern",
+                "label": "No."
+              },
+              {
+                "id": "another_pattern_present",
+                "label": "Yes."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "44444444-4444-4444-8444-444444444444",
+          "question_id": "q2",
+          "answer": "no_other_pattern"
+        },
+        "status": 200,
+        "response": {
+          "status": "resolved",
+          "classification": "perceptual",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "multiple_patterns_unresolved": [
+      {
+        "request": {
+          "user_id": "fixture-multiple-patterns-unresolved-user",
+          "session_id": "fixture-multiple-patterns-unresolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "55555555-5555-4555-8555-555555555555",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "55555555-5555-4555-8555-555555555555",
+          "question_id": "q1",
+          "answer": "control_loss"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "55555555-5555-4555-8555-555555555555",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q2",
+            "text": "Is another distinct fracture pattern also present?",
+            "options": [
+              {
+                "id": "no_other_pattern",
+                "label": "No."
+              },
+              {
+                "id": "another_pattern_present",
+                "label": "Yes."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "55555555-5555-4555-8555-555555555555",
+          "question_id": "q2",
+          "answer": "another_pattern_present"
+        },
+        "status": 200,
+        "response": {
+          "status": "unresolved",
+          "reason": "EXPLICIT_UNRESOLVED",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "none_apply_unresolved": [
+      {
+        "request": {
+          "user_id": "fixture-none-apply-unresolved-user",
+          "session_id": "fixture-none-apply-unresolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "66666666-6666-4666-8666-666666666666",
+          "question_id": "q1",
+          "answer": "none_apply"
+        },
+        "status": 200,
+        "response": {
+          "status": "unresolved",
+          "reason": "EXPLICIT_UNRESOLVED",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "unsure_unresolved": [
+      {
+        "request": {
+          "user_id": "fixture-unsure-unresolved-user",
+          "session_id": "fixture-unsure-unresolved-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "77777777-7777-4777-8777-777777777777",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "77777777-7777-4777-8777-777777777777",
+          "question_id": "q1",
+          "answer": "unsure"
+        },
+        "status": 200,
+        "response": {
+          "status": "unresolved",
+          "reason": "EXPLICIT_UNRESOLVED",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      }
+    ],
+    "class_name_rejected": [
+      {
+        "request": {
+          "user_id": "fixture-class-name-rejected-user",
+          "session_id": "fixture-class-name-rejected-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "88888888-8888-4888-8888-888888888888",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "88888888-8888-4888-8888-888888888888",
+          "question_id": "q1",
+          "answer": "behavioral"
+        },
+        "status": 200,
+        "response": {
+          "error": "Invalid option",
+          "code": "INVALID_OPTION"
+        }
+      }
+    ],
+    "out_of_order": [
+      {
+        "request": {
+          "user_id": "fixture-out-of-order-user",
+          "session_id": "fixture-out-of-order-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "99999999-9999-4999-8999-999999999999",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "99999999-9999-4999-8999-999999999999",
+          "question_id": "q2",
+          "answer": "no_other_pattern"
+        },
+        "status": 200,
+        "response": {
+          "error": "Question out of order",
+          "code": "OUT_OF_ORDER"
+        }
+      }
+    ],
+    "interaction_closed": [
+      {
+        "request": {
+          "user_id": "fixture-interaction-closed-user",
+          "session_id": "fixture-interaction-closed-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "interaction_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "done": false,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          },
+          "question": {
+            "id": "q1",
+            "text": "Which single AXIS fracture pattern applies?",
+            "options": [
+              {
+                "id": "control_loss",
+                "label": "Control Grip"
+              },
+              {
+                "id": "rejection_sensitivity",
+                "label": "Rejection Alarm"
+              },
+              {
+                "id": "status_threat",
+                "label": "Status Threat"
+              },
+              {
+                "id": "uncertainty_intolerance",
+                "label": "Uncertainty Pressure"
+              },
+              {
+                "id": "self_worth_dependency",
+                "label": "Worth Attachment"
+              },
+              {
+                "id": "boundary_violation",
+                "label": "Boundary Drift"
+              },
+              {
+                "id": "comparison_spiral",
+                "label": "Comparison Loop"
+              },
+              {
+                "id": "over_responsibility",
+                "label": "Responsibility Overreach"
+              },
+              {
+                "id": "avoidance_loop",
+                "label": "Avoidance Loop"
+              },
+              {
+                "id": "shame_spike",
+                "label": "Shame Spike"
+              },
+              {
+                "id": "none_apply",
+                "label": "None of these patterns applies."
+              },
+              {
+                "id": "unsure",
+                "label": "I am not sure which pattern applies."
+              }
+            ]
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "question_id": "q1",
+          "answer": "none_apply"
+        },
+        "status": 200,
+        "response": {
+          "status": "unresolved",
+          "reason": "EXPLICIT_UNRESOLVED",
+          "done": true,
+          "contract_version": "1.0.0",
+          "question_set": {
+            "id": "axis_fracture_classification",
+            "version": "1.0.0"
+          }
+        }
+      },
+      {
+        "request": {
+          "interaction_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+          "question_id": "q1",
+          "answer": "none_apply"
+        },
+        "status": 200,
+        "response": {
+          "error": "Interaction closed",
+          "code": "INTERACTION_CLOSED"
+        }
+      }
+    ],
+    "interaction_not_found": [
+      {
+        "request": {
+          "interaction_id": "00000000-0000-4000-8000-000000000000",
+          "question_id": "q1",
+          "answer": "control_loss"
+        },
+        "status": 200,
+        "response": {
+          "error": "Interaction not found",
+          "code": "INTERACTION_NOT_FOUND"
+        }
+      }
+    ],
+    "default_empty": [
+      {
+        "request": {
+          "user_id": "fixture-default-empty-user",
+          "session_id": "fixture-default-empty-session",
+          "trigger_type": "operator_initiated"
+        },
+        "status": 200,
+        "response": {
+          "error": "Question set unavailable",
+          "code": "QUESTION_SET_UNAVAILABLE"
+        }
+      }
+    ]
+  }
+}

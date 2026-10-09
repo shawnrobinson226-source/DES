@@ -10,13 +10,18 @@ import pytest
 from tools.record_operator_contract_v1 import (
     FORBIDDEN_AXIS_ENV,
     NORMALIZED_IDS,
+    PRODUCTION_NORMALIZED_IDS,
     RUNTIME_COMMIT,
     render_fixture,
+    render_production_fixture,
 )
 
 
 ROOT = Path(__file__).resolve().parent.parent
 FIXTURE = ROOT / "tests" / "fixtures" / "operator_contract_v1_recorded.json"
+PRODUCTION_FIXTURE = (
+    ROOT / "tests" / "fixtures" / "axis_fracture_classification_v1_recorded.json"
+)
 
 
 def test_recorder_refuses_even_empty_axis_settings():
@@ -108,3 +113,43 @@ def test_non_wire_cases_are_explicitly_contract_derived():
         "contract_version": "1.0.0",
         "question_set": {"id": "tri_operator_plumbing_scaffold", "version": "0.1.0"},
     }
+
+
+def test_production_recorder_is_byte_stable_across_two_real_loopback_runs():
+    first = render_production_fixture(environ={})
+    second = render_production_fixture(environ={})
+    assert first == second
+    regenerated = json.loads(first)
+    committed = json.loads(PRODUCTION_FIXTURE.read_text(encoding="utf-8"))
+    assert regenerated["recorded_wire"] == committed["recorded_wire"]
+    assert regenerated["normalizations"] == committed["normalizations"]
+
+
+def test_production_fixture_covers_approved_outcomes_and_failures():
+    fixture = json.loads(PRODUCTION_FIXTURE.read_text(encoding="utf-8"))
+    assert fixture["question_set"] == {
+        "id": "axis_fracture_classification", "version": "1.0.0"}
+    assert fixture["des_runtime_commit"] == RUNTIME_COMMIT
+    wire = fixture["recorded_wire"]
+    assert set(wire) == set(PRODUCTION_NORMALIZED_IDS) | {"default_empty"}
+    assert wire["behavioral_resolved"][-1]["response"]["classification"] == "behavioral"
+    assert wire["emotional_resolved"][-1]["response"]["classification"] == "emotional"
+    assert wire["narrative_resolved"][-1]["response"]["classification"] == "narrative"
+    assert wire["perceptual_resolved"][-1]["response"]["classification"] == "perceptual"
+    assert wire["multiple_patterns_unresolved"][-1]["response"]["reason"] == "EXPLICIT_UNRESOLVED"
+    assert wire["none_apply_unresolved"][-1]["response"]["reason"] == "EXPLICIT_UNRESOLVED"
+    assert wire["unsure_unresolved"][-1]["response"]["reason"] == "EXPLICIT_UNRESOLVED"
+    assert wire["class_name_rejected"][-1]["response"]["code"] == "INVALID_OPTION"
+    assert wire["out_of_order"][-1]["response"]["code"] == "OUT_OF_ORDER"
+    assert wire["interaction_closed"][-1]["response"]["code"] == "INTERACTION_CLOSED"
+    assert wire["interaction_not_found"][-1]["response"]["code"] == "INTERACTION_NOT_FOUND"
+    assert wire["default_empty"][-1]["response"]["code"] == "QUESTION_SET_UNAVAILABLE"
+
+    canonical = json.dumps(
+        wire, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
+    assert fixture["normalized_wire_sha256"] == hashlib.sha256(canonical).hexdigest()
+    for value in PRODUCTION_NORMALIZED_IDS.values():
+        parsed = uuid.UUID(value)
+        assert parsed.version == 4
+        assert parsed.variant == uuid.RFC_4122

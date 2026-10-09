@@ -28,10 +28,12 @@ import uvicorn
 ROOT = Path(__file__).resolve().parent.parent
 HOST = "127.0.0.1"
 SELECTION = "tri_operator_plumbing_scaffold@0.1.0"
+PRODUCTION_SELECTION = "axis_fracture_classification@1.0.0"
 CONTRACT_VERSION = "1.0.0"
 QUESTION_SET = {"id": "tri_operator_plumbing_scaffold", "version": "0.1.0"}
-RUNTIME_COMMIT = "7f3eba70ede5d0fa2571a92d9b8e649679f7a8c9"
-RECORDING_DATE = "2026-10-07"
+PRODUCTION_QUESTION_SET = {"id": "axis_fracture_classification", "version": "1.0.0"}
+RUNTIME_COMMIT = "6d39960461a4a7960d3e9f9db36fadbc26aa352c"
+RECORDING_DATE = "2026-10-09"
 RECORDER_IDENTITY = "DES tools/record_operator_contract_v1.py"
 FORBIDDEN_AXIS_ENV = (
     "AXIS_BASE_URL",
@@ -46,6 +48,20 @@ NORMALIZED_IDS = {
     "invalid_option": "44444444-4444-4444-8444-444444444444",
     "out_of_order": "55555555-5555-4555-8555-555555555555",
     "interaction_closed": "66666666-6666-4666-8666-666666666666",
+    "interaction_not_found": "00000000-0000-4000-8000-000000000000",
+}
+
+PRODUCTION_NORMALIZED_IDS = {
+    "behavioral_resolved": "11111111-1111-4111-8111-111111111111",
+    "emotional_resolved": "22222222-2222-4222-8222-222222222222",
+    "narrative_resolved": "33333333-3333-4333-8333-333333333333",
+    "perceptual_resolved": "44444444-4444-4444-8444-444444444444",
+    "multiple_patterns_unresolved": "55555555-5555-4555-8555-555555555555",
+    "none_apply_unresolved": "66666666-6666-4666-8666-666666666666",
+    "unsure_unresolved": "77777777-7777-4777-8777-777777777777",
+    "class_name_rejected": "88888888-8888-4888-8888-888888888888",
+    "out_of_order": "99999999-9999-4999-8999-999999999999",
+    "interaction_closed": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
     "interaction_not_found": "00000000-0000-4000-8000-000000000000",
 }
 
@@ -218,6 +234,63 @@ def _record_active() -> dict:
         _stop(process)
 
 
+def _record_production_active() -> dict:
+    process, base = _launch(PRODUCTION_SELECTION)
+    try:
+        recorded = {}
+        resolved = (
+            ("behavioral_resolved", "avoidance_loop", "behavioral"),
+            ("emotional_resolved", "shame_spike", "emotional"),
+            ("narrative_resolved", "status_threat", "narrative"),
+            ("perceptual_resolved", "control_loss", "perceptual"),
+        )
+        for scenario, fracture, _classification in resolved:
+            steps = [_start(base, scenario.replace("_", "-"))]
+            interaction_id = steps[0]["response"]["interaction_id"]
+            steps.append(_answer(base, interaction_id, "q1", fracture))
+            steps.append(_answer(base, interaction_id, "q2", "no_other_pattern"))
+            recorded[scenario] = steps
+
+        steps = [_start(base, "multiple-patterns-unresolved")]
+        interaction_id = steps[0]["response"]["interaction_id"]
+        steps.append(_answer(base, interaction_id, "q1", "control_loss"))
+        steps.append(_answer(base, interaction_id, "q2", "another_pattern_present"))
+        recorded["multiple_patterns_unresolved"] = steps
+
+        for scenario, answer in (
+            ("none_apply_unresolved", "none_apply"),
+            ("unsure_unresolved", "unsure"),
+        ):
+            steps = [_start(base, scenario.replace("_", "-"))]
+            interaction_id = steps[0]["response"]["interaction_id"]
+            steps.append(_answer(base, interaction_id, "q1", answer))
+            recorded[scenario] = steps
+
+        steps = [_start(base, "class-name-rejected")]
+        interaction_id = steps[0]["response"]["interaction_id"]
+        steps.append(_answer(base, interaction_id, "q1", "behavioral"))
+        recorded["class_name_rejected"] = steps
+
+        steps = [_start(base, "out-of-order")]
+        interaction_id = steps[0]["response"]["interaction_id"]
+        steps.append(_answer(base, interaction_id, "q2", "no_other_pattern"))
+        recorded["out_of_order"] = steps
+
+        steps = [_start(base, "interaction-closed")]
+        interaction_id = steps[0]["response"]["interaction_id"]
+        steps.append(_answer(base, interaction_id, "q1", "none_apply"))
+        steps.append(_answer(base, interaction_id, "q1", "none_apply"))
+        recorded["interaction_closed"] = steps
+
+        missing_id = PRODUCTION_NORMALIZED_IDS["interaction_not_found"]
+        recorded["interaction_not_found"] = [
+            _answer(base, missing_id, "q1", "control_loss")
+        ]
+        return recorded
+    finally:
+        _stop(process)
+
+
 def _record_default_empty() -> list:
     process, base = _launch(None)
     try:
@@ -234,9 +307,9 @@ def _replace_string(value, old: str, new: str):
     return new if value == old else value
 
 
-def _normalize(recorded: dict) -> dict:
+def _normalize(recorded: dict, normalized_ids=NORMALIZED_IDS) -> dict:
     normalized = deepcopy(recorded)
-    for scenario, replacement in NORMALIZED_IDS.items():
+    for scenario, replacement in normalized_ids.items():
         if scenario == "interaction_not_found":
             continue
         steps = normalized[scenario]
@@ -323,7 +396,63 @@ def render_fixture(environ=None) -> str:
     return json.dumps(fixture, indent=2, ensure_ascii=False) + "\n"
 
 
+def render_production_fixture(environ=None) -> str:
+    source_env = os.environ if environ is None else environ
+    _assert_axis_unset(source_env)
+    _assert_runtime_tree_clean()
+    wire = _normalize(_record_production_active(), PRODUCTION_NORMALIZED_IDS)
+    wire["default_empty"] = _record_default_empty()
+    canonical_wire = json.dumps(
+        wire, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
+    fixture = {
+        "contract_version": CONTRACT_VERSION,
+        "source": "recorded DES production-policy loopback",
+        "question_set": PRODUCTION_QUESTION_SET,
+        "des_runtime_commit": RUNTIME_COMMIT,
+        "des_runtime_commit_role": (
+            "server code under test; recorder, fixture, tests, and docs were added later"
+        ),
+        "server_tree_clean_against_runtime_commit": True,
+        "recording_date": RECORDING_DATE,
+        "runtime": {
+            "python": platform.python_version(),
+            "fastapi": fastapi.__version__,
+            "uvicorn": uvicorn.__version__,
+        },
+        "recorder": RECORDER_IDENTITY,
+        "normalizations": [
+            "synthetic fixture user_id and session_id values",
+            "interaction_id replaced per scenario with a fixed valid UUIDv4",
+            "HTTP Date and Server headers omitted",
+            "ephemeral loopback port omitted",
+            "no local filesystem path recorded",
+        ],
+        "normalization_version": "1",
+        "canonicalization": "UTF-8 JSON, sorted keys, no insignificant whitespace",
+        "hash_scope": (
+            "normalized request bodies, HTTP status codes, and response bodies; "
+            "provenance fields are excluded"
+        ),
+        "normalized_wire_sha256": hashlib.sha256(canonical_wire).hexdigest(),
+        "recorded_wire": wire,
+    }
+    return json.dumps(fixture, indent=2, ensure_ascii=False) + "\n"
+
+
 def main() -> None:
+    if sys.argv[1:] == ["--write-fixtures"]:
+        fixture_dir = ROOT / "tests" / "fixtures"
+        (fixture_dir / "operator_contract_v1_recorded.json").write_text(
+            render_fixture(), encoding="utf-8")
+        (fixture_dir / "axis_fracture_classification_v1_recorded.json").write_text(
+            render_production_fixture(), encoding="utf-8")
+        return
+    if sys.argv[1:] == ["--production"]:
+        sys.stdout.write(render_production_fixture())
+        return
+    if sys.argv[1:]:
+        raise SystemExit("usage: record_operator_contract_v1.py [--production|--write-fixtures]")
     sys.stdout.write(render_fixture())
 
 
