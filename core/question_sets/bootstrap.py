@@ -11,6 +11,7 @@ startup instead of selecting a fallback.
 
 import os
 
+from core.question_sets.axis_fracture_classification_v1 import AXIS_FRACTURE_CLASSIFICATION_V1
 from core.question_sets.operator_scaffold_v1 import OPERATOR_PLUMBING_SCAFFOLD_V1
 from core.question_sets.registry import OPERATOR_QUESTION_SETS, QuestionSetRegistry
 
@@ -18,6 +19,8 @@ from core.question_sets.registry import OPERATOR_QUESTION_SETS, QuestionSetRegis
 ACTIVATION_ENV = "DES_OPERATOR_QUESTION_SET"
 
 AVAILABLE_QUESTION_SETS = {
+    f"{AXIS_FRACTURE_CLASSIFICATION_V1.id}@{AXIS_FRACTURE_CLASSIFICATION_V1.version}":
+        AXIS_FRACTURE_CLASSIFICATION_V1,
     f"{OPERATOR_PLUMBING_SCAFFOLD_V1.id}@{OPERATOR_PLUMBING_SCAFFOLD_V1.version}":
         OPERATOR_PLUMBING_SCAFFOLD_V1,
 }

@@ -83,10 +83,10 @@ Q3 options are `clarity`, `fit`, `trust`, and `cost`.
 
 The operator flow uses the active entry in `OPERATOR_QUESTION_SETS`, pins its
 `id` and `version`, and accepts exact option ids for the expected next question.
-The registry starts empty. The startup bootstrap can activate only the explicit
-non-production plumbing scaffold; no production question set exists. Without
-that exact controlled-trial selection, the route returns an HTTP 200 error body
-with code `QUESTION_SET_UNAVAILABLE`. The complete contract is in
+The registry starts empty. The startup bootstrap can activate the explicit
+non-production plumbing scaffold or the approved AXIS-grounded production set,
+but only by exact id and version. Without an exact selection, the route returns
+an HTTP 200 error body with code `QUESTION_SET_UNAVAILABLE`. The complete contract is in
 [DES Operator Contract V1](DES_OPERATOR_CONTRACT_V1.md).
 
 ## Legacy Pricing Friction Types
@@ -179,8 +179,8 @@ through the bootstrap, and nothing activates by default.
 dispatches by the stored interaction's `trigger_type`. Pricing advances the fixed
 flow and produces legacy pricing output. Operator handling follows the pinned
 question set and returns the next question, a resolved classification, or an
-unresolved reason. The available scaffold exercises these shapes but is not
-production classification policy.
+unresolved reason. The scaffold exercises these shapes without semantic claims;
+`axis_fracture_classification@1.0.0` is the approved production policy.
 
 ## Security Rules
 

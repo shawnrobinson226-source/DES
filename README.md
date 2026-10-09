@@ -31,12 +31,13 @@ Operator terminal outcomes:
 - unresolved with an explicit reason
 
 See [DES Operator Contract V1](docs/DES_OPERATOR_CONTRACT_V1.md) for the
-`operator_initiated` response and storage contract. A mechanics-only operator
-scaffold is implemented and approved for local plumbing trials only; it makes
-no production classification claim. See the
-[Operator Plumbing Scaffold Approval](docs/OPERATOR_PLUMBING_SCAFFOLD_REVIEW.md).
-It is inactive unless an exact version is selected through the fail-closed
-startup bootstrap. See the [DES Local Launch Specification](docs/DES_LAUNCH_SPEC.md).
+`operator_initiated` response and storage contract. The repository contains a
+mechanics-only scaffold and the approved, AXIS-grounded production set
+`axis_fracture_classification@1.0.0`. Both remain inactive unless their exact
+version is selected through the fail-closed startup bootstrap. See the
+[Production Question-Set Approval](docs/AXIS_FRACTURE_CLASSIFICATION_V1_REVIEW.md),
+[Operator Plumbing Scaffold Approval](docs/OPERATOR_PLUMBING_SCAFFOLD_REVIEW.md),
+and [DES Local Launch Specification](docs/DES_LAUNCH_SPEC.md).
 
 System principles:
 - deterministic behavior

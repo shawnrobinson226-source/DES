@@ -26,9 +26,15 @@ Activation is explicit and versioned. With the variable absent or empty, the
 operator registry remains empty and an operator start fails closed with
 `QUESTION_SET_UNAVAILABLE`.
 
-The only accepted versioned selection in this build is the non-production
-plumbing scaffold shown below. It is approved only for local mechanics and
-browser trials with AXIS disconnected:
+The accepted exact selections are the approved production classification set
+and the non-production plumbing scaffold:
+
+```powershell
+$env:DES_OPERATOR_QUESTION_SET = "axis_fracture_classification@1.0.0"
+```
+
+The scaffold remains approved only for local mechanics and browser trials with
+AXIS disconnected:
 
 ```powershell
 $env:DES_OPERATOR_QUESTION_SET = "tri_operator_plumbing_scaffold@0.1.0"
@@ -87,8 +93,9 @@ headers, the ephemeral port, and local paths are omitted. The drift test runs
 the recorder twice and requires byte-identical normalized output before
 comparing its wire content with the committed fixture.
 
-The recording is scaffold evidence, not production-classification evidence.
-It must be replaced when operator-authored production content exists.
+The committed recording is scaffold evidence, not production-classification
+evidence. Re-recording against the production selector remains a separate gate
+before production activation.
 
 The recorder bypasses environment and system proxy settings by opening a direct
 HTTP connection and asserts that the connected peer address is loopback. It

@@ -26,10 +26,10 @@ stored interaction's `trigger_type`. The pricing flow remains separate.
 
 ## Availability And Version Pinning
 
-`OPERATOR_QUESTION_SETS` is created empty. The repository contains one explicit
-non-production plumbing scaffold, but nothing activates by default and no
-production question-set content exists. Until the exact scaffold selection is
-chosen for a controlled trial, an operator start returns:
+`OPERATOR_QUESTION_SETS` is created empty. The repository contains an explicit
+non-production plumbing scaffold and the approved production set
+`axis_fracture_classification@1.0.0`, but nothing activates by default. Until an
+exact allowlisted selection is chosen, an operator start returns:
 
 ```json
 {
@@ -208,14 +208,15 @@ may be passed to the pricing payload builder. Operator terminal output uses
   simultaneous answers may race and the last write may win.
 - Corrupted stored routing state can produce an uncaught `KeyError` in a path
   normal validated operation cannot create.
-- The production registry is empty and this repository has no bootstrap.
+- The runtime registry is empty until the exact startup selector activates one
+  available version.
 - The reserved state machine is not used by operator interactions.
 - Terminal responses rely on caller-side interaction-id binding.
 - DES carries no operator identity and verifies none. The request `user_id` is
   caller-supplied and unauthenticated. Operator identity and confirmation must
   live at the plugin boundary; DES neither provides nor checks them, and this
   repository does not verify that any plugin does so.
-- DES endpoints have no authentication. A loopback-only deployment is a
-  compensating control, but this repository does not configure or prove the
-  server bind address.
+- DES endpoints have no authentication. The checked-in local launcher fixes the
+  bind to IPv4 loopback; that is a compensating control, not remote-deployment
+  authorization.
 - There is no cancellation route.

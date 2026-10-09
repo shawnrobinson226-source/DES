@@ -13,19 +13,27 @@ from core.question_sets.bootstrap import (
     OperatorBootstrapError,
     bootstrap_operator_question_sets,
 )
+from core.question_sets.axis_fracture_classification_v1 import AXIS_FRACTURE_CLASSIFICATION_V1
 from core.question_sets.operator_scaffold_v1 import OPERATOR_PLUMBING_SCAFFOLD_V1
 from core.question_sets.registry import QuestionSetRegistry
 from tests.operator_fixtures import single_question_set
 
 
-SELECTION = (
+SCAFFOLD_SELECTION = (
     f"{OPERATOR_PLUMBING_SCAFFOLD_V1.id}@{OPERATOR_PLUMBING_SCAFFOLD_V1.version}"
 )
+PRODUCTION_SELECTION = (
+    f"{AXIS_FRACTURE_CLASSIFICATION_V1.id}@{AXIS_FRACTURE_CLASSIFICATION_V1.version}"
+)
+SELECTION = SCAFFOLD_SELECTION
 ROOT = Path(__file__).resolve().parent.parent
 
 
-def test_available_set_has_one_explicit_versioned_name():
-    assert AVAILABLE_QUESTION_SETS == {SELECTION: OPERATOR_PLUMBING_SCAFFOLD_V1}
+def test_available_sets_have_only_explicit_versioned_names():
+    assert AVAILABLE_QUESTION_SETS == {
+        SCAFFOLD_SELECTION: OPERATOR_PLUMBING_SCAFFOLD_V1,
+        PRODUCTION_SELECTION: AXIS_FRACTURE_CLASSIFICATION_V1,
+    }
 
 
 @pytest.mark.parametrize("environ", [{}, {ACTIVATION_ENV: ""}])
@@ -46,6 +54,15 @@ def test_exact_selection_registers_and_activates_scaffold_content():
     assert registry.get_active() is OPERATOR_PLUMBING_SCAFFOLD_V1
 
 
+def test_exact_selection_registers_and_activates_production_content():
+    registry = QuestionSetRegistry()
+    result = bootstrap_operator_question_sets(PRODUCTION_SELECTION, registry=registry)
+    assert result == (AXIS_FRACTURE_CLASSIFICATION_V1.id,
+                      AXIS_FRACTURE_CLASSIFICATION_V1.version)
+    assert registry.keys() == (result,)
+    assert registry.get_active() is AXIS_FRACTURE_CLASSIFICATION_V1
+
+
 def test_explicit_argument_overrides_environment_mapping():
     registry = QuestionSetRegistry()
     result = bootstrap_operator_question_sets(
@@ -59,6 +76,8 @@ def test_explicit_argument_overrides_environment_mapping():
     "unknown@1.0.0",
     "tri_operator_plumbing_scaffold",
     "tri_operator_plumbing_scaffold@latest",
+    "axis_fracture_classification",
+    "axis_fracture_classification@latest",
     f" {SELECTION}",
     f"{SELECTION} ",
     1,
@@ -120,6 +139,12 @@ def test_application_import_applies_exact_environment_activation():
     result = launch_import(SELECTION)
     assert result.returncode == 0, result.stderr
     assert "tri_operator_plumbing_scaffold" in result.stdout
+
+
+def test_application_import_applies_exact_production_activation():
+    result = launch_import(PRODUCTION_SELECTION)
+    assert result.returncode == 0, result.stderr
+    assert "axis_fracture_classification" in result.stdout
 
 
 def test_application_import_refuses_unknown_environment_activation():
