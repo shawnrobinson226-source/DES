@@ -62,7 +62,20 @@ The production runtime is pinned at commit
 the scaffold and production fixtures twice with byte-identical normalized wire
 content while AXIS settings were absent. The full DES suite passed 548 tests.
 
-An isolated mutation changed `control_loss` from `perceptual` to `narrative`.
-The policy tests failed on both the exact approved mapping and the expected
-outcome counts, proving that fracture-to-class drift is detected. The mutated
-checkout was then removed.
+Eight isolated mutations were run and every one was caught:
+
+| Mutation | Gate that failed |
+| --- | --- |
+| Change `control_loss` from `perceptual` to `narrative` | exact approved mapping and outcome counts |
+| Swap the classes for `control_loss` and `rejection_sensitivity` | exact approved mapping |
+| Delete the final explicit rule | 22-rule completeness and outcome counts |
+| Resolve a multiple-pattern path with the first fracture's class | exact outcome counts |
+| Resolve `unsure` as `continuity` | exact outcome counts and Continuity exclusion |
+| Route `none_apply` and `unsure` to q2 | load-time exact-path validation |
+| Add `behavioral` as a q1 option | 12-option/path counts and real-handler rejection |
+| Rename `control_loss` to `control_grip` | pinned fracture-id import guard |
+
+The 22-path real-handler test exercises every authored rule, but the source,
+graph, outcome-count and rejection checks are independently necessary: a test
+that derives its expectations from mutated rules cannot by itself detect every
+policy change. All disposable mutation checkouts were removed after the runs.
